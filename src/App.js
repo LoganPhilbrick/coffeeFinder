@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fetchCoffeeData } from "./api";
-import Header from "./components/Header";
+import { Button, Grid } from "@mui/material";
 import CoffeeCard from "./components/CoffeeCard";
 
 function App() {
@@ -20,22 +20,36 @@ function App() {
         .catch((error) => console.log(error));
     });
   };
+  console.log(info);
 
   return (
-    <div style={{ backgroundColor: "#F2F3F5" }}>
-      <Header style={{ boxShadow: "0px 0px 15px black" }}>
+    <div className="App">
+      <Grid container justifyContent="center" alignItems="center">
         {!loaded && (
-          <button style={{ padding: "10px", borderRadius: "20px", boxShadow: " inset 0px 0px 5px rgba(0, 0, 0, 0.5)", backgroundColor: "white", border: "none" }} onClick={handleClick}>
+          <Button variant="contained" onClick={handleClick}>
             Search Nearby
-          </button>
+          </Button>
         )}
         {loaded && (
-          <button style={{ padding: "10px 13px", boxShadow: " inset 0px 0px 5px rgba(0, 0, 0, 0.5)", borderRadius: "20px", backgroundColor: "white", border: "none" }} onClick={handleClick}>
+          <Button variant="outlined" onClick={handleClick}>
             Refresh
-          </button>
+          </Button>
         )}
-      </Header>
-      <div className="App">{loaded && info.map((item) => <CoffeeCard key={item.id} name={item.name} rating={item.rating} imageUrl={item.image_url} />)}</div>
+
+        <Grid container rowSpacing={4} direction="row" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
+          {loaded &&
+            info.map((item) => (
+              <CoffeeCard
+                key={item.id}
+                name={item.name}
+                rating={item.rating}
+                imageUrl={item.image_url}
+                address={`${item.location.address1} ${item.location.city}, ${item.location.state}`}
+                distance={item.distance}
+              />
+            ))}
+        </Grid>
+      </Grid>
     </div>
   );
 }

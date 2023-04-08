@@ -1,14 +1,32 @@
 import React from "react";
+import { Typography, Card, CardActionArea, CardMedia, CardContent, Grid } from "@mui/material";
+import { Star } from "@mui/icons-material";
 
-const CoffeeCard = ({ name, rating, imageUrl }) => {
+const CoffeeCard = ({ name, rating, distance, imageUrl, address }) => {
+  const miles = (distance * 0.000621371192).toFixed(1);
   return (
-    <div style={{ display: "flex", boxShadow: " inset 0px 0px 15px rgba(0, 0, 0, 0.5)", borderRadius: "20px", padding: "20px", margin: "50px", backgroundColor: "#F2F3F5" }}>
-      <img src={imageUrl} alt={name} style={{ width: "250px", height: "250px", objectFit: "cover", borderRadius: "20px" }} />
-      <div style={{ marginLeft: "30px" }}>
-        <h1>{name}</h1>
-        <h3>Rating: {rating}</h3>
-      </div>
-    </div>
+    <Grid item>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardMedia component="img" height="140" image={imageUrl} />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {name}
+              <Typography variant="body2" color="text.secondary">
+                {rating}
+                <Star sx={{ fontSize: 15 }} />
+              </Typography>
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              {address}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {`${miles} mi`}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Grid>
   );
 };
 

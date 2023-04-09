@@ -1,31 +1,32 @@
 import React from "react";
-import { Typography, Card, CardActionArea, CardMedia, CardContent, Grid } from "@mui/material";
+import { Typography, Card, CardActionArea, CardMedia, Grid } from "@mui/material";
 import { StarRounded } from "@mui/icons-material";
+import "../fonts.css";
 
 const CoffeeCard = ({ name, rating, distance, imageUrl, address }) => {
   const miles = (distance * 0.000621371192).toFixed(1);
   return (
-    <Card sx={{ maxWidth: 345 }} style={{ border: "none", boxShadow: "inset 0px 0px 15px grey", backgroundColor: "#fff", fontFamily: "TT Norms Pro" }}>
+    <Card sx={{ maxWidth: 345 }} style={{ border: "none", boxShadow: "none" }}>
       <CardActionArea>
-        <CardMedia component="img" height="140" rounded image={imageUrl} />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="div" fontWeight="bold">
+        <CardMedia component="img" height="170" rounded image={imageUrl} style={{ borderRadius: "3px" }} />
+        <Grid container justifyContent="flex-start" marginTop="15px">
+          <Typography className="norms" gutterBottom component="div" fontWeight="700">
             {name}
           </Typography>
           <Grid container direction="row" alignItems="center">
             <Grid item>
-              <Typography variant="body2" color="text.secondary" style={{ display: "flex", alignItems: "center" }}>
+              <Typography className="norms" variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center" }}>
                 {`${miles} mi - ${rating}`}
               </Typography>
             </Grid>
             <Grid item>
-              <StarRounded sx={{ fontSize: 15 }} />
+              <StarRounded sx={{ fontSize: 17 }} />
             </Grid>
           </Grid>
-          <Typography variant="body2" color="text.secondary">
+          <Typography className="norms" variant="body1" color="text.secondary">
             {address}
           </Typography>
-        </CardContent>
+        </Grid>
       </CardActionArea>
     </Card>
   );

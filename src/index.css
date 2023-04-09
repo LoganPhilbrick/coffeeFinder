@@ -12,8 +12,16 @@ code {
     monospace;
 }
 
-body {
+.slide-top {
+  animation: slide-top 0.5s ease-out forwards;
+  transform: translateY(-100%);
+}
 
-  background-color: #eee;
-  
+@keyframes slide-top {
+  0% {
+    transform: translateY(-100%);
   }
+  100% {
+    transform: translateY(0);
+  }
+}

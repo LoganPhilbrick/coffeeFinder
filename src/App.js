@@ -24,26 +24,25 @@ function App() {
 
   return (
     <div>
-      <Container maxWidth="lg">
-        <Grid container justifyContent="center">
-          <Grid item style={{ marginTop: "40px", marginBottom: "60px" }}>
-            {!loaded && (
-              <Button variant="contained" onClick={handleClick}>
-                Search Nearby
-              </Button>
-            )}
-            {loaded && (
-              <Button variant="outlined" onClick={handleClick}>
-                Refresh
-              </Button>
-            )}
-          </Grid>
+      <Grid container justifyContent="center" className="slide-top" style={{ position: "sticky", top: 0, backgroundColor: "#43b3ae", zIndex: "1", boxShadow: "0px 0px 15px grey" }}>
+        <Grid item style={{ marginTop: "40px", marginBottom: "40px" }}>
+          {!loaded && (
+            <Button variant="contained" onClick={handleClick}>
+              Search Nearby
+            </Button>
+          )}
+          {loaded && (
+            <Button variant="contained" onClick={handleClick}>
+              Refresh
+            </Button>
+          )}
         </Grid>
-
-        <Grid container spacing={3} style={{ marginBottom: "40px", borderTop: "solid 1px lightGrey" }}>
+      </Grid>
+      <Container maxWidth="lg">
+        <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px", marginTop: "5px" }}>
           {loaded &&
             info.map((item) => (
-              <Grid item xs={4}>
+              <Grid item xs="auto">
                 <CoffeeCard
                   key={item.id}
                   name={item.name}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fetchCoffeeData } from "./api";
-import { Button, Grid } from "@mui/material";
+import { Button, Container, Grid } from "@mui/material";
 import CoffeeCard from "./components/CoffeeCard";
 
 function App() {
@@ -23,33 +23,39 @@ function App() {
   console.log(info);
 
   return (
-    <div className="App">
-      <Grid container justifyContent="center" alignItems="center">
-        {!loaded && (
-          <Button variant="contained" onClick={handleClick}>
-            Search Nearby
-          </Button>
-        )}
-        {loaded && (
-          <Button variant="outlined" onClick={handleClick}>
-            Refresh
-          </Button>
-        )}
+    <div>
+      <Container maxWidth="lg">
+        <Grid container justifyContent="center">
+          <Grid item style={{ marginTop: "40px", marginBottom: "60px" }}>
+            {!loaded && (
+              <Button variant="contained" onClick={handleClick}>
+                Search Nearby
+              </Button>
+            )}
+            {loaded && (
+              <Button variant="outlined" onClick={handleClick}>
+                Refresh
+              </Button>
+            )}
+          </Grid>
+        </Grid>
 
-        <Grid container rowSpacing={4} direction="row" justifyContent="space-evenly" alignItems="flex-start" spacing={4}>
+        <Grid container spacing={3} style={{ marginBottom: "40px", borderTop: "solid 1px lightGrey" }}>
           {loaded &&
             info.map((item) => (
-              <CoffeeCard
-                key={item.id}
-                name={item.name}
-                rating={item.rating}
-                imageUrl={item.image_url}
-                address={`${item.location.address1} ${item.location.city}, ${item.location.state}`}
-                distance={item.distance}
-              />
+              <Grid item xs={4}>
+                <CoffeeCard
+                  key={item.id}
+                  name={item.name}
+                  rating={item.rating}
+                  imageUrl={item.image_url}
+                  address={`${item.location.address1} ${item.location.city}, ${item.location.state}`}
+                  distance={item.distance}
+                />
+              </Grid>
             ))}
         </Grid>
-      </Grid>
+      </Container>
     </div>
   );
 }

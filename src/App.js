@@ -22,6 +22,10 @@ function App() {
   };
   console.log(info);
 
+  const calculateDelay = (index) => {
+    return `${(index + 1) * 0.1}s`; // adjust the delay as needed
+  };
+
   return (
     <div>
       <Grid container justifyContent="center" className="slide-top" style={{ position: "sticky", top: 0, backgroundColor: "#43b3ae", zIndex: "1", boxShadow: "0px 0px 15px grey" }}>
@@ -41,10 +45,10 @@ function App() {
       <Container maxWidth="lg">
         <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px", marginTop: "5px" }}>
           {loaded &&
-            info.map((item) => (
-              <Grid item xs="auto">
+            info.map((item, index) => (
+              <Grid item xs="auto" className="fade-in" key={index} style={{ animationDelay: calculateDelay(index) }}>
                 <CoffeeCard
-                  key={item.id}
+                  key={index}
                   name={item.name}
                   rating={item.rating}
                   imageUrl={item.image_url}

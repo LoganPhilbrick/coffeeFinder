@@ -8,7 +8,7 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address }) => {
   return (
     <Card sx={{ maxWidth: 345 }} style={{ border: "none", boxShadow: "none" }}>
       <CardActionArea>
-        <CardMedia component="img" height="170" rounded image={imageUrl} style={{ borderRadius: "3px" }} />
+        <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "3px" }} />
         <Grid container justifyContent="flex-start" marginTop="15px">
           <Typography className="norms" gutterBottom component="div" fontWeight="700">
             {name}

@@ -25,3 +25,18 @@ code {
     transform: translateY(0);
   }
 }
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

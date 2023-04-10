@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/api/*"
+  from = "/businesses"
   to = "https://api.yelp.com/v3"
   status = 200
   force = true

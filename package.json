@@ -2,6 +2,7 @@
   "name": "weathertest",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.yelp.com/v3",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

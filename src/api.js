@@ -4,7 +4,5 @@ export const fetchCoffeeData = (apiKey, latitude, longitude) => {
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
   };
 
-  return fetch(`https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&categories=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
+  return fetch(`/businesses/search?latitude=${latitude}&longitude=${longitude}&categories=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
 };
-
-// "proxy": "https://api.yelp.com/v3",

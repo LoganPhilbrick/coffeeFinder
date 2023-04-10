@@ -1,6 +1,7 @@
 export const fetchCoffeeData = (apiKey, latitude, longitude) => {
   const options = {
     method: "GET",
+    mode: "cors",
     headers: { accept: "application/json", Authorization: `Bearer ${apiKey}` },
   };
   if (window.location.hostname === "localhost") {

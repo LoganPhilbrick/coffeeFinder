@@ -1,1 +1,5 @@
-/api/*  https://api.yelp.com/v3  200
+[[redirects]]
+  from = "/api/*"
+  to = "https://api.yelp.com/v3"
+  status = 200
+  force = true

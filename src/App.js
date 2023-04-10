@@ -14,6 +14,7 @@ function App() {
       const { latitude, longitude } = coords;
       fetchCoffeeData(APIKEY, latitude, longitude)
         .then((data) => {
+          console.log({ data });
           setInfo(data.businesses);
           setLoaded(true);
         })
@@ -23,7 +24,7 @@ function App() {
   console.log(info);
 
   const calculateDelay = (index) => {
-    return `${(index + 1) * 0.1}s`; // adjust the delay as needed
+    return `${(index + 1) * 0.1}s`;
   };
 
   return (

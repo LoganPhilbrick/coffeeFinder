@@ -11,9 +11,7 @@ export const fetchCoffeeData = (apiKey, latitude, longitude) => {
     return fetch(`/businesses/search?latitude=${latitude}&longitude=${longitude}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
   }
   if (window.location.hostname !== "localhost") {
-    return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=coffee&sort_by=best_match&limit=20`, options).then(
-      (res) => res.json()
-    );
+    return fetch(`https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
   }
 };
 export const searchCoffeeData = (apiKey, location) => {
@@ -31,6 +29,6 @@ export const searchCoffeeData = (apiKey, location) => {
     return fetch(`/businesses/search?location=${location}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
   }
   if (window.location.hostname !== "localhost") {
-    return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${location}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
+    return fetch(`https://api.yelp.com/v3/businesses/businesses/search?location=${location}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
   }
 };

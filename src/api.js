@@ -1,36 +1,28 @@
-export const fetchCoffeeData = (apiKey, latitude, longitude) => {
+export const fetchCoffeeData = (APIKEY, latitude, longitude) => {
   const options = {
     method: "GET",
     mode: "cors",
     headers: {
+      latitude,
+      longitude,
       accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
+      // Authorization: `Bearer ${APIKEY}`,
     },
   };
-  if (window.location.hostname === "localhost") {
-    return fetch(`/businesses/search?latitude=${latitude}&longitude=${longitude}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
-  }
-  if (window.location.hostname !== "localhost") {
-    return fetch(`http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=coffee&sort_by=best_match&limit=20`, options).then(
-      (res) => res.json()
-    );
-  }
+
+  return fetch(`https://coffeeapi-d9982.web.app/coords`, options).then((res) => res.json());
 };
-export const searchCoffeeData = (apiKey, location) => {
+export const searchCoffeeData = (APIKEY, location) => {
   const formattedLocation = location.trim().replace(" ", "%20");
   const options = {
     method: "GET",
     mode: "cors",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
+      location: formattedLocation,
+      // Authorization: `Bearer ${APIKEY}`,
     },
   };
-  console.log(formattedLocation);
-  if (window.location.hostname === "localhost") {
-    return fetch(`/businesses/search?location=${location}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
-  }
-  if (window.location.hostname !== "localhost") {
-    return fetch(`https://api.yelp.com/v3/businesses/businesses/search?location=${location}&term=coffee&sort_by=best_match&limit=20`, options).then((res) => res.json());
-  }
+
+  return fetch(`https://coffeeapi-d9982.web.app/location`, options).then((res) => res.json());
 };

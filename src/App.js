@@ -56,9 +56,9 @@ function App() {
               </Grid>
             ))
           ) : isSmallScreen ? (
-            <Grid container xs={8} direction="column" justifyContent="center" alignItems="center" style={{ minHeight: "20vh" }}>
+            <Grid container xs={8} direction="column" justifyContent="center" alignItems="center" style={{ minHeight: "20vh", marginLeft: 15 }}>
               <Typography textAlign="center">Click the button or the arrow to search for coffee near you!</Typography>
-              <Button variant="contained" onClick={handleClick} sx={{ ml: 1.5, mt: 2 }}>
+              <Button variant="contained" onClick={handleClick} sx={{ mt: 2 }}>
                 Search Nearby
               </Button>
             </Grid>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchCoffeeData } from "./api";
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Button, Typography } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import CoffeeCard from "./components/CoffeeCard";
 import Header from "./components/Header";
 
@@ -30,6 +31,8 @@ function App() {
     return `${(index + 1) * 0.1}s`;
   };
 
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+
   return (
     <div>
       <Header setLoaded={setLoaded} setInfo={setInfo} handleClick={handleClick} />
@@ -39,7 +42,7 @@ function App() {
 
       <Container maxWidth="lg">
         <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
-          {loaded &&
+          {loaded ? (
             info.map((item, index) => (
               <Grid item xs="auto" className="fade-in" key={index} style={{ animationDelay: calculateDelay(index) }}>
                 <CoffeeCard
@@ -51,7 +54,22 @@ function App() {
                   distance={item.distance}
                 />
               </Grid>
-            ))}
+            ))
+          ) : isSmallScreen ? (
+            <Grid container xs={8} direction="column" justifyContent="center" alignItems="center" style={{ minHeight: "20vh" }}>
+              <Typography textAlign="center">Click the button or the arrow to search for coffee near you!</Typography>
+              <Button variant="contained" onClick={handleClick} sx={{ ml: 1.5, mt: 2 }}>
+                Search Nearby
+              </Button>
+            </Grid>
+          ) : (
+            <Grid container direction="row" justifyContent="center" alignItems="center" style={{ minHeight: "20vh" }}>
+              <Typography>Click the button to search for coffee near you!</Typography>
+              <Button variant="contained" onClick={handleClick} sx={{ ml: 1.5 }}>
+                Search Nearby
+              </Button>
+            </Grid>
+          )}
         </Grid>
       </Container>
     </div>

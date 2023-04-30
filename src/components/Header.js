@@ -57,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header({ setLoaded, setInfo, handleClick }) {
+export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }) {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   return (
@@ -90,7 +90,11 @@ export default function Header({ setLoaded, setInfo, handleClick }) {
                 if (values.location === "" || values.location === null) {
                   return false;
                 }
-                searchCoffeeData(APIKEY, values.location).then((res) => setInfo(res.businesses));
+                setIsLoading(true);
+                searchCoffeeData(APIKEY, values.location).then((res) => {
+                  setInfo(res.businesses);
+                  setIsLoading(false);
+                });
                 setLoaded(true);
               }}
             >

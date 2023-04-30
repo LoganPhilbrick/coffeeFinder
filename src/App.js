@@ -50,7 +50,20 @@ function App() {
       <Container maxWidth="lg">
         <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
           {isLoading ? (
-            <Oval height={80} width={80} color="#add8e6" wrapperStyle={{}} wrapperClass="" visible={true} ariaLabel="oval-loading" secondaryColor="##2E2EFF" strokeWidth={2} strokeWidthSecondary={2} />
+            <Grid container justifyContent="center" style={{ marginLeft: 15 }}>
+              <Oval
+                height={80}
+                width={80}
+                color="#add8e6"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="##2E2EFF"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+              />
+            </Grid>
           ) : (
             <>
               {loaded ? (

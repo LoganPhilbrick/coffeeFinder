@@ -2,11 +2,25 @@ import React from "react";
 import { Typography, Card, CardActionArea, CardMedia, Grid } from "@mui/material";
 import { StarRounded } from "@mui/icons-material";
 import "../fonts.css";
+import { useNavigate } from "react-router-dom";
 
-const CoffeeCard = ({ name, rating, distance, imageUrl, address }) => {
+const CoffeeCard = ({ name, rating, distance, imageUrl, address, id }) => {
   const miles = (distance * 0.000621371192).toFixed(1);
+
+  const navigate = useNavigate();
+
+  const toDetails = () => {
+    navigate("/details", { state: { id: `${id}` } });
+  };
+
   return (
-    <Card sx={{ maxWidth: 345 }} style={{ border: "none", boxShadow: "none" }}>
+    <Card
+      sx={{ maxWidth: 345 }}
+      style={{ border: "none", boxShadow: "none" }}
+      onClick={() => {
+        toDetails();
+      }}
+    >
       <CardActionArea>
         <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "3px" }} />
         <Grid container justifyContent="flex-start" marginTop="15px">

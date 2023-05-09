@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-import { Container, Typography, Grid } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import "../fonts.css";
 
 const Details = () => {

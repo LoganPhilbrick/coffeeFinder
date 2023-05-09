@@ -24,12 +24,12 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, id }) => {
       <CardActionArea>
         <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "3px" }} />
         <Grid container justifyContent="flex-start" marginTop="15px">
-          <Typography className="norms" gutterBottom component="div" fontWeight="700">
+          <Typography className="norms" gutterBottom component="div" fontWeight="700" style={{ fontWeight: "700", fontFamily: "TT Norms Pro" }}>
             {name}
           </Typography>
           <Grid container direction="row" alignItems="center">
             <Grid item>
-              <Typography className="norms" variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center" }}>
+              <Typography variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center", fontFamily: "TT Norms Pro" }}>
                 {`${miles} mi - ${rating}`}
               </Typography>
             </Grid>
@@ -37,7 +37,7 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, id }) => {
               <StarRounded sx={{ fontSize: 17 }} />
             </Grid>
           </Grid>
-          <Typography className="norms" variant="body1" color="text.secondary">
+          <Typography variant="body1" color="text.secondary" style={{ fontFamily: "TT Norms Pro" }}>
             {address}
           </Typography>
         </Grid>

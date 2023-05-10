@@ -38,3 +38,15 @@ export const fetchDetails = (APIKEY, id) => {
 
   return fetch(`https://coffeeapi-d9982.web.app/details`, options).then((res) => res.json());
 };
+export const fetchReviews = (APIKEY, id) => {
+  const options = {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      id,
+      accept: "application/json",
+    },
+  };
+
+  return fetch(`https://coffeeapi-d9982.web.app/reviews`, options).then((res) => res.json());
+};

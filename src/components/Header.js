@@ -14,6 +14,7 @@ import { searchCoffeeData } from "../api";
 import { APIKEY } from "../App";
 import { Button, IconButton } from "@mui/material";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,6 +61,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }) {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
+  const navigate = useNavigate();
+
+  const toHomePage = () => {
+    navigate("/");
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -67,7 +74,15 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
           <Icon size="large" edge="start" color="inherit" sx={{ mr: 3.5, ml: 1 }}>
             <LocalCafeRoundedIcon />
           </Icon>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            onClick={() => {
+              toHomePage();
+            }}
+          >
             CoffeeFinder
           </Typography>
           {isSmallScreen ? (

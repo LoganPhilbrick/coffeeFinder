@@ -21,13 +21,14 @@ const Details = () => {
 
   useEffect(() => {
     handleDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     console.log(details);
   }, [details]);
 
-  return <div onClick={handleDetails}>{details?.name}</div>;
+  return <div>{details?.name}</div>;
 };
 
 export default Details;

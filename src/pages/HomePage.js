@@ -40,13 +40,14 @@ const HomePage = () => {
               {loaded ? (
                 info.map((item, index) => (
                   <Grid item xs="auto" className="fade-in" key={index} style={{ animationDelay: calculateDelay(index) }}>
-                    <CoffeeCard // On click navigate to details & pass ID as params
+                    <CoffeeCard
                       key={index}
                       name={item.name}
                       rating={item.rating}
                       imageUrl={item.image_url}
                       address={`${item.location.address1} ${item.location.city}, ${item.location.state}`}
                       distance={item.distance}
+                      count={item.review_count}
                       id={item.id}
                     />
                   </Grid>

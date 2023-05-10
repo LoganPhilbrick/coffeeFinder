@@ -21,6 +21,14 @@ const Router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: (
+      <div style={{ display: "flex", justifyContent: "center", fontWeight: "bold" }}>
+        <h1 style={{ marginTop: "50vh" }}>404 Not Found</h1>
+      </div>
+    ),
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

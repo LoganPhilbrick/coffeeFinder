@@ -34,7 +34,7 @@ function App() {
     return `${(index + 1) * 0.1}s`;
   };
 
-  const isSmallScreen = useMediaQuery("(max-width:634px)");
+  const isSmallScreen = useMediaQuery("(max-width:784px)");
 
   return (
     <div>

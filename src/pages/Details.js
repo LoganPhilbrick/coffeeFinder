@@ -2,17 +2,13 @@ import { useLocation } from "react-router-dom";
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
-// import { useOutletContext } from "react-router-dom";
+import { Container, Typography, Grid, Link, useTheme, Box } from "@mui/material";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 
 const Details = () => {
   const [details, setDetails] = useState();
   const [reviews, setReviews] = useState();
-
-  // const context = useOutletContext();
-  // const isSmallScreen = context[7];
 
   const location = useLocation();
 
@@ -74,41 +70,55 @@ const Details = () => {
   const theme = useTheme();
 
   return (
-    <Container style={{ marginTop: "80px" }}>
-      <Grid container display="flex" direction="row" justifyContent="space-evenly" style={{ marginBottom: "80px" }}>
-        <Grid xs={6} item display="flex" justifyContent="center" alignItems="start" direction="column">
-          <Typography variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
-            {details?.name}
-          </Typography>
-          <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
-            {newRating}
-            <Typography style={{ fontFamily: "TT norms pro", marginLeft: "10px" }}>{`${reviews?.total} reviews`}</Typography>
-          </Grid>
-          <Grid display="flex" direction="row">
-            <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <img alt="details?.photos[0]" src={details?.image_url} style={{ width: "350px", height: "300px", objectFit: "cover", borderRadius: "50px" }} />
-        </Grid>
-      </Grid>
-      <Grid container>
-        {reviews?.reviews.map((item) => (
-          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: theme.palette.primary.main }}>
-            <Grid item>
-              <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-              <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
-              <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+    <>
+      <div style={{ backgroundImage: `url(${details?.image_url})`, marginBottom: "36px", backgroundSize: "cover", backgroundPosition: "center" }}>
+        <div style={{ backdropFilter: "brightness(50%)" }}>
+          <Container style={{ paddingTop: "80px" }}>
+            <Grid container display="flex" direction="row" justifyContent="center" style={{ paddingBottom: "80px" }}>
+              <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color="white">
+                <Typography variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
+                  {details?.name}
+                </Typography>
+                <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
+                  {newRating}
+                  <Typography style={{ fontFamily: "TT norms pro", marginLeft: "10px" }}>{`${reviews?.total} reviews`}</Typography>
+                </Grid>
+                <Grid display="flex" direction="row">
+                  <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
-              <Link href={item.url} color="inherit" underline="none">
-                See Full Review
-              </Link>
+          </Container>
+        </div>
+      </div>
+      {/* <Grid item>
+        <img
+          alt="details?.photos[0]"
+          src={details?.image_url}
+          style={{ width: "100%", height: "250px", objectFit: "cover", position: "absolute", top: "76px", right: "0", zIndex: "-1", filter: "brightness(50%)" }}
+        />
+      </Grid> */}
+
+      {/* )} */}
+      <Container>
+        <Grid container>
+          {reviews?.reviews.map((item) => (
+            <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: theme.palette.primary.main }}>
+              <Grid item>
+                <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
+                <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
+                <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+              </Grid>
+              <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                <Link href={item.url} color="inherit" underline="none">
+                  See Full Review
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+          ))}
+        </Grid>
+      </Container>
+    </>
   );
 };
 

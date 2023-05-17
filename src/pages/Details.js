@@ -1,8 +1,7 @@
 import { useLocation } from "react-router-dom";
-import { fetchDetails } from "../api";
+import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-
 import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
 // import { useOutletContext } from "react-router-dom";
 import "../fonts.css";
@@ -10,6 +9,7 @@ import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourL
 
 const Details = () => {
   const [details, setDetails] = useState();
+  const [reviews, setReviews] = useState();
 
   // const context = useOutletContext();
   // const isSmallScreen = context[7];
@@ -21,6 +21,13 @@ const Details = () => {
     fetchDetails(APIKEY, id)
       .then((res) => {
         setDetails(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    fetchReviews(APIKEY, id)
+      .then((res) => {
+        setReviews(res);
       })
       .catch((error) => {
         console.log(error);
@@ -64,11 +71,13 @@ const Details = () => {
     newRating = <img alt="rating" src={ZeroLg} />;
   }
 
+  const theme = useTheme();
+
   return (
     <Container style={{ marginTop: "80px" }}>
       <Grid container display="flex" direction="row" justifyContent="space-evenly" style={{ marginBottom: "80px" }}>
         <Grid xs={6} item display="flex" justifyContent="center" alignItems="start" direction="column">
-          <Typography xs={6} variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
+          <Typography variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
             {details?.name}
           </Typography>
           <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
@@ -85,7 +94,7 @@ const Details = () => {
       </Grid>
       <Grid container>
         {reviews?.reviews.map((item) => (
-          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: "#2196f3" }}>
+          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: theme.palette.primary.main }}>
             <Grid item>
               <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
               <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>

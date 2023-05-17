@@ -7,11 +7,11 @@ import { Zero, One, OneHalf, Two, TwoHalf, Three, ThreeHalf, Four, FourHalf, Fiv
 const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) => {
   const miles = (distance * 0.000621371192).toFixed(1);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const toDetails = () => {
-    navigate("/details", { state: { id: `${id}` } });
-  };
+  // const toDetails = () => {
+  //   navigate("/details", { state: { id: `${id}` } });
+  // };
 
   let newRating;
 
@@ -41,9 +41,9 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
     <Card
       sx={{ maxWidth: 365 }}
       style={{ border: "none", boxShadow: "none" }}
-      onClick={() => {
-        toDetails();
-      }}
+      // onClick={() => {
+      //   toDetails();
+      // }}
     >
       <CardActionArea>
         <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "5px" }} />

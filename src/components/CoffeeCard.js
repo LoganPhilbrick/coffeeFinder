@@ -41,9 +41,9 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
     <Card
       sx={{ maxWidth: 365 }}
       style={{ border: "none", boxShadow: "none" }}
-      onClick={() => {
-        toDetails();
-      }}
+      // onClick={() => {
+      //   toDetails();
+      // }}
     >
       <CardActionArea>
         <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "5px" }} />

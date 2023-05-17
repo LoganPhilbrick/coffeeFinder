@@ -1,15 +1,15 @@
 import { useLocation } from "react-router-dom";
-import { fetchDetails, fetchReviews } from "../api";
+import { fetchDetails } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-import { Container, Typography, Grid, Link } from "@mui/material";
+
+import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
 // import { useOutletContext } from "react-router-dom";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 
 const Details = () => {
   const [details, setDetails] = useState();
-  const [reviews, setReviews] = useState();
 
   // const context = useOutletContext();
   // const isSmallScreen = context[7];
@@ -21,13 +21,6 @@ const Details = () => {
     fetchDetails(APIKEY, id)
       .then((res) => {
         setDetails(res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    fetchReviews(APIKEY, id)
-      .then((res) => {
-        setReviews(res);
       })
       .catch((error) => {
         console.log(error);

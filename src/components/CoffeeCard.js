@@ -39,7 +39,7 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
 
   return (
     <Card
-      sx={{ maxWidth: 365 }}
+      sx={{ maxWidth: 345 }}
       style={{ border: "none", boxShadow: "none" }}
       onClick={() => {
         toDetails();

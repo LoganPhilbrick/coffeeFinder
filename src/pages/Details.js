@@ -8,7 +8,6 @@ import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 
-
 const Details = () => {
   const [details, setDetails] = useState();
 
@@ -36,7 +35,6 @@ const Details = () => {
   useEffect(() => {
     console.log(details);
   }, [details]);
-
 
   useEffect(() => {
     console.log(reviews);
@@ -66,13 +64,11 @@ const Details = () => {
     newRating = <img alt="rating" src={ZeroLg} />;
   }
 
-  const theme = useTheme();
-
   return (
     <Container style={{ marginTop: "80px" }}>
       <Grid container display="flex" direction="row" justifyContent="space-evenly" style={{ marginBottom: "80px" }}>
         <Grid xs={6} item display="flex" justifyContent="center" alignItems="start" direction="column">
-          <Typography variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
+          <Typography xs={6} variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
             {details?.name}
           </Typography>
           <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
@@ -89,7 +85,7 @@ const Details = () => {
       </Grid>
       <Grid container>
         {reviews?.reviews.map((item) => (
-          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: theme.palette.primary.main }}>
+          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: "#2196f3" }}>
             <Grid item>
               <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
               <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
@@ -105,7 +101,6 @@ const Details = () => {
       </Grid>
     </Container>
   );
-
 };
 
 export default Details;

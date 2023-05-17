@@ -1,0 +1,23 @@
+import Zero from "../assets/Zero.png";
+import One from "../assets/One.png";
+import OneHalf from "../assets/OneHalf.png";
+import Two from "../assets/Two.png";
+import TwoHalf from "../assets/TwoHalf.png";
+import Three from "../assets/Three.png";
+import ThreeHalf from "../assets/ThreeHalf.png";
+import Four from "../assets/Four.png";
+import FourHalf from "../assets/FourHalf.png";
+import Five from "../assets/Five.png";
+import YelpLogo from "../assets/YelpLogo.png";
+import ZeroLg from "../assets/ZeroLg.png";
+import OneLg from "../assets/OneLg.png";
+import OneHalfLg from "../assets/OneHalfLg.png";
+import TwoLg from "../assets/TwoLg.png";
+import TwoHalfLg from "../assets/TwoHalfLg.png";
+import ThreeLg from "../assets/ThreeLg.png";
+import ThreeHalfLg from "../assets/ThreeHalfLg.png";
+import FourLg from "../assets/FourLg.png";
+import FourHalfLg from "../assets/FourHalfLg.png";
+import FiveLg from "../assets/FiveLg.png";
+
+export { Zero, One, OneHalf, Two, TwoHalf, Three, ThreeHalf, Four, FourHalf, Five, ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg, YelpLogo };

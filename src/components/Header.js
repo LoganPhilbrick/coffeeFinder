@@ -69,9 +69,17 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
         <Toolbar>
-          <Icon size="large" edge="start" color="inherit" sx={{ mr: 3.5, ml: 1 }}>
+          <Icon
+            size="large"
+            edge="start"
+            color="inherit"
+            sx={{ mr: 3.5, ml: 1 }}
+            onClick={() => {
+              toHomePage();
+            }}
+          >
             <LocalCafeRoundedIcon />
           </Icon>
           <Typography

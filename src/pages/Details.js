@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-import { Container, Typography, Grid, Link, useTheme, Box } from "@mui/material";
+import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 

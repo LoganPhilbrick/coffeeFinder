@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
+import { Container, Typography, Grid, Link } from "@mui/material";
 // import { useOutletContext } from "react-router-dom";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
@@ -71,13 +71,11 @@ const Details = () => {
     newRating = <img alt="rating" src={ZeroLg} />;
   }
 
-  const theme = useTheme();
-
   return (
     <Container style={{ marginTop: "80px" }}>
       <Grid container display="flex" direction="row" justifyContent="space-evenly" style={{ marginBottom: "80px" }}>
         <Grid xs={6} item display="flex" justifyContent="center" alignItems="start" direction="column">
-          <Typography variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
+          <Typography xs={6} variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
             {details?.name}
           </Typography>
           <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
@@ -94,7 +92,7 @@ const Details = () => {
       </Grid>
       <Grid container>
         {reviews?.reviews.map((item) => (
-          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: theme.palette.primary.main }}>
+          <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: "#2196f3" }}>
             <Grid item>
               <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
               <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>

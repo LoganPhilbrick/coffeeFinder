@@ -69,7 +69,7 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
         <Toolbar>
           <Icon
             size="large"

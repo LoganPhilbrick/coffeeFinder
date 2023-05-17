@@ -14,26 +14,11 @@ const HomePage = () => {
 
   return (
     <div>
-      <Grid container justifyContent="center">
-        <Grid item style={{ marginTop: "40px" }}></Grid>
-      </Grid>
-
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" style={{ marginTop: "40px" }}>
         <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
           {isLoading ? (
-            <Grid container justifyContent="center" style={{ marginLeft: 15 }}>
-              <Oval
-                height={80}
-                width={80}
-                color="#add8e6"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-                ariaLabel="oval-loading"
-                secondaryColor="##2E2EFF"
-                strokeWidth={2}
-                strokeWidthSecondary={2}
-              />
+            <Grid container justifyContent="center" style={{ marginLeft: 15, marginTop: "85px" }}>
+              <Oval height={80} width={80} color="#add8e6" visible={true} ariaLabel="oval-loading" secondaryColor="##2E2EFF" strokeWidth={3} strokeWidthSecondary={3} />
             </Grid>
           ) : (
             <>

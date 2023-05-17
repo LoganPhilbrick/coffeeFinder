@@ -39,34 +39,34 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
 
   return (
     <Card
-      sx={{ maxWidth: 345 }}
+      sx={{ maxWidth: 365 }}
       style={{ border: "none", boxShadow: "none" }}
       onClick={() => {
         toDetails();
       }}
     >
       <CardActionArea>
-        <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "3px" }} />
+        <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "5px" }} />
         <Grid container justifyContent="flex-start" marginTop="15px">
-          <Typography className="norms" gutterBottom component="div" fontWeight="700" style={{ fontWeight: "700", fontFamily: "TT Norms Pro" }}>
+          <Typography className="norms" gutterBottom component="div" fontWeight="700" style={{ fontWeight: "700", fontFamily: "tt norms pro" }}>
             {name}
           </Typography>
           <Grid container>
             <Grid container direction="row">
               <Grid item>{newRating}</Grid>
-              <Grid item style={{ marginLeft: "10px", fontFamily: "TT Norms Pro" }}>
+              <Grid item style={{ marginLeft: "10px", fontFamily: "tt norms pro" }}>
                 {count} Reviews
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center", fontFamily: "TT Norms Pro" }}>
+              <Typography variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center", fontFamily: "tt norms pro" }}>
                 {`${miles} mi`}
               </Typography>
             </Grid>
           </Grid>
           <Grid container direction="row" justifyContent="space-between">
             <Grid item>
-              <Typography variant="body1" color="text.secondary" style={{ fontFamily: "TT Norms Pro" }}>
+              <Typography variant="body1" color="text.secondary" style={{ fontFamily: "tt norms pro" }}>
                 {address}
               </Typography>
             </Grid>

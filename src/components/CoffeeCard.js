@@ -65,7 +65,7 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
             </Grid>
           </Grid>
           <Grid container direction="row" justifyContent="space-between">
-            <Grid item>
+            <Grid item xs={12}>
               <Typography variant="body1" color="text.secondary" style={{ fontFamily: "tt norms pro" }}>
                 {address}
               </Typography>

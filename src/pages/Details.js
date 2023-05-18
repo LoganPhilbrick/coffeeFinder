@@ -46,9 +46,9 @@ const Details = () => {
   let newRating;
 
   if (details?.rating === 5) {
-    newRating = <img alt="rating" src={FiveLg} />;
+    newRating = <img style={{ width: "50px" }} alt="rating" src={FiveLg} />;
   } else if (details?.rating === 4.5) {
-    newRating = <img alt="rating" src={FourHalfLg} />;
+    newRating = <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />;
   } else if (details?.rating === 4) {
     newRating = <img alt="rating" src={FourLg} />;
   } else if (details?.rating === 3.5) {

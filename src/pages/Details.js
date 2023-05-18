@@ -72,7 +72,7 @@ const Details = () => {
   return (
     <>
       <div style={{ backgroundImage: `url(${details?.image_url})`, marginBottom: "36px", backgroundSize: "cover", backgroundPosition: "center" }}>
-        <div style={{ backdropFilter: "brightness(50%)" }}>
+        <div style={{ backdropFilter: "brightness(50%)", WebkitBackdropFilter: "brightness(50%)" }}>
           <Container style={{ paddingTop: "80px" }}>
             <Grid container display="flex" direction="row" justifyContent="center" style={{ paddingBottom: "80px" }}>
               <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color="white">

@@ -41,3 +41,7 @@ code {
   }
 }
 
+.filters{
+  backdrop-filter: brightness(50%);
+  -webkit-backdrop-filter: brightness(50%);
+}

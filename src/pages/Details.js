@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
@@ -16,11 +16,11 @@ const Details = () => {
   const setIsLoading = context[5];
   const isLoading = context[2];
 
-  const location = useLocation();
+  // const location = useLocation();
 
   const handleDetails = () => {
     setIsLoading(true);
-    const id = location.state.id || localStorage.getItem("storeId");
+    const id = localStorage.getItem("storeId");
     fetchDetails(APIKEY, id)
       .then((res) => {
         setDetails(res);

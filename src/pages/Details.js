@@ -1,9 +1,8 @@
-// import { useLocation } from "react-router-dom";
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
 import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
@@ -12,15 +11,15 @@ const Details = () => {
   const [details, setDetails] = useState();
   const [reviews, setReviews] = useState();
 
+  const { id: paramId } = useParams();
+
   const context = useOutletContext();
   const setIsLoading = context[5];
   const isLoading = context[2];
 
-  // const location = useLocation();
-
   const handleDetails = () => {
     setIsLoading(true);
-    const id = localStorage.getItem("storeId");
+    const id = paramId || localStorage.getItem("storeId");
     fetchDetails(APIKEY, id)
       .then((res) => {
         setDetails(res);

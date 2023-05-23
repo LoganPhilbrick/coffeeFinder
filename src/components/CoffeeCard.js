@@ -11,7 +11,7 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
 
   const toDetails = () => {
     localStorage.setItem("storeId", id);
-    navigate("/details", { state: { id: `${id}` } });
+    navigate(`/details/${id}`, { state: { id: `${id}` } });
   };
 
   let newRating;

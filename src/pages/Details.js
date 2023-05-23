@@ -20,7 +20,7 @@ const Details = () => {
 
   const handleDetails = () => {
     setIsLoading(true);
-    const id = location.state.id;
+    const id = location.state.id || localStorage.getItem("storeId");
     fetchDetails(APIKEY, id)
       .then((res) => {
         setDetails(res);

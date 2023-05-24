@@ -1,6 +1,7 @@
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
+import MobileDetect from "mobile-detect";
 import { Container, Typography, Grid, Link, useTheme, Button } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
@@ -11,6 +12,7 @@ import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 const Details = () => {
   const [details, setDetails] = useState();
   const [reviews, setReviews] = useState();
+  const [mapsUrl, setMapsUrl] = useState();
 
   const { id: paramId } = useParams();
 
@@ -78,8 +80,28 @@ const Details = () => {
 
   const theme = useTheme();
 
+  const detectDevice = () => {
+    let type = new MobileDetect(window.navigator.userAgent);
+    if (type.os() === "iOS") {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          const { latitude, longitude } = coords;
+          setMapsUrl(`http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${details?.coordinates.latitude},${details?.coordinates.longitude}`);
+        },
+        (err) => console.log(err),
+        { enableHighAccuracy: true }
+      );
+    } else if (type.os() !== "iOS") {
+      setMapsUrl(`https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`);
+    }
+  };
+
+  useEffect(() => {
+    detectDevice();
+  });
+
   const openMaps = () => {
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`);
+    window.open(mapsUrl);
   };
 
   return (

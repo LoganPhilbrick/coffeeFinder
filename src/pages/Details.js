@@ -1,11 +1,12 @@
 import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
-import { Container, Typography, Grid, Link, useTheme } from "@mui/material";
+import { Container, Typography, Grid, Link, useTheme, Button } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
+import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 
 const Details = () => {
   const [details, setDetails] = useState();
@@ -77,6 +78,10 @@ const Details = () => {
 
   const theme = useTheme();
 
+  const openMaps = () => {
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -99,6 +104,11 @@ const Details = () => {
                     </Grid>
                     <Grid display="flex" direction="row">
                       <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                    </Grid>
+                    <Grid>
+                      <Button variant="contained" onClick={() => openMaps()}>
+                        <NearMeRoundedIcon />
+                      </Button>
                     </Grid>
                   </Grid>
                 </Grid>

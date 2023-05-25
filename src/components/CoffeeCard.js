@@ -16,26 +16,37 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
 
   let newRating;
 
-  if (rating === 5) {
-    newRating = <img alt="rating" src={Five} />;
-  } else if (rating === 4.5) {
-    newRating = <img alt="rating" src={FourHalf} />;
-  } else if (rating === 4) {
-    newRating = <img alt="rating" src={Four} />;
-  } else if (rating === 3.5) {
-    newRating = <img alt="rating" src={ThreeHalf} />;
-  } else if (rating === 3) {
-    newRating = <img alt="rating" src={Three} />;
-  } else if (rating === 2.5) {
-    newRating = <img alt="rating" src={TwoHalf} />;
-  } else if (rating === 2) {
-    newRating = <img alt="rating" src={Two} />;
-  } else if (rating === 1.5) {
-    newRating = <img alt="rating" src={OneHalf} />;
-  } else if (rating === 1) {
-    newRating = <img alt="rating" src={One} />;
-  } else {
-    newRating = <img alt="rating" src={Zero} />;
+  switch (rating) {
+    case 5:
+      newRating = <img alt="rating" src={Five} />;
+      break;
+    case 4.5:
+      newRating = <img alt="rating" src={FourHalf} />;
+      break;
+    case 4:
+      newRating = <img alt="rating" src={Four} />;
+      break;
+    case 3.5:
+      newRating = <img alt="rating" src={ThreeHalf} />;
+      break;
+    case 3:
+      newRating = <img alt="rating" src={Three} />;
+      break;
+    case 2.5:
+      newRating = <img alt="rating" src={TwoHalf} />;
+      break;
+    case 2:
+      newRating = <img alt="rating" src={Two} />;
+      break;
+    case 1.5:
+      newRating = <img alt="rating" src={OneHalf} />;
+      break;
+    case 1:
+      newRating = <img alt="rating" src={One} />;
+      break;
+    default:
+      newRating = <img alt="rating" src={Zero} />;
+      break;
   }
 
   return (

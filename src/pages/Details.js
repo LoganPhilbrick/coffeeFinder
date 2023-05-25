@@ -2,12 +2,14 @@ import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
 import MobileDetect from "mobile-detect";
-import { Container, Typography, Grid, Link, useTheme, Button } from "@mui/material";
+import { Container, Typography, Grid, Link, useTheme, Fab } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
+import ShareIcon from "@mui/icons-material/Share";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
 const Details = () => {
   const [details, setDetails] = useState();
@@ -56,26 +58,70 @@ const Details = () => {
 
   let newRating;
 
-  if (details?.rating === 5) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={FiveLg} />;
-  } else if (details?.rating === 4.5) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />;
-  } else if (details?.rating === 4) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={FourLg} />;
-  } else if (details?.rating === 3.5) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeHalfLg} />;
-  } else if (details?.rating === 3) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeLg} />;
-  } else if (details?.rating === 2.5) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={TwoHalfLg} />;
-  } else if (details?.rating === 2) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={TwoLg} />;
-  } else if (details?.rating === 1.5) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={OneHalfLg} />;
-  } else if (details?.rating === 1) {
-    newRating = <img style={{ width: "150px" }} alt="rating" src={OneLg} />;
-  } else {
-    newRating = <img alt="rating" src={ZeroLg} />;
+  switch (details?.rating) {
+    case 5:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={FiveLg} />;
+      break;
+    case 4.5:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />;
+      break;
+    case 4:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={FourLg} />;
+      break;
+    case 3.5:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeHalfLg} />;
+      break;
+    case 3:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeLg} />;
+      break;
+    case 2.5:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={TwoHalfLg} />;
+      break;
+    case 2:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={TwoLg} />;
+      break;
+    case 1.5:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={OneHalfLg} />;
+      break;
+    case 1:
+      newRating = <img style={{ width: "150px" }} alt="rating" src={OneLg} />;
+      break;
+    default:
+      newRating = <img alt="rating" src={ZeroLg} />;
+      break;
+  }
+  function getRatingImage(rating) {
+    switch (rating) {
+      case 5:
+        return <img style={{ width: "100px" }} alt="rating" src={FiveLg} />;
+
+      case 4.5:
+        return <img style={{ width: "100px" }} alt="rating" src={FourHalfLg} />;
+
+      case 4:
+        return <img style={{ width: "100px" }} alt="rating" src={FourLg} />;
+
+      case 3.5:
+        return <img style={{ width: "100px" }} alt="rating" src={ThreeHalfLg} />;
+
+      case 3:
+        return <img style={{ width: "100px" }} alt="rating" src={ThreeLg} />;
+
+      case 2.5:
+        return <img style={{ width: "100px" }} alt="rating" src={TwoHalfLg} />;
+
+      case 2:
+        return <img style={{ width: "100px" }} alt="rating" src={TwoLg} />;
+
+      case 1.5:
+        return <img style={{ width: "100px" }} alt="rating" src={OneHalfLg} />;
+
+      case 1:
+        return <img style={{ width: "100px" }} alt="rating" src={OneLg} />;
+
+      default:
+        return <Typography>No Rating</Typography>;
+    }
   }
 
   const theme = useTheme();
@@ -124,13 +170,19 @@ const Details = () => {
                       {newRating}
                       <Typography style={{ fontFamily: "TT norms pro", marginLeft: "10px" }}>{`${reviews?.total} reviews`}</Typography>
                     </Grid>
-                    <Grid display="flex" direction="row">
+                    <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
                       <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
                     </Grid>
-                    <Grid>
-                      <Button variant="contained" onClick={() => openMaps()}>
+                    <Grid container display="flex" direction="row" justifyContent="start" alignItems="start">
+                      <Fab style={{ marginRight: "10px" }} color="primary" size="small" onClick={() => openMaps()}>
                         <NearMeRoundedIcon />
-                      </Button>
+                      </Fab>
+                      <Fab style={{ marginRight: "10px" }} color="primary" size="small">
+                        <ShareIcon />
+                      </Fab>
+                      <Fab color="primary" size="small">
+                        <StarRoundedIcon />
+                      </Fab>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -145,6 +197,7 @@ const Details = () => {
                   <Grid item>
                     <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
                     <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
+                    <Grid>{getRatingImage(item.rating)}</Grid>
                     <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
                   </Grid>
                   <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>

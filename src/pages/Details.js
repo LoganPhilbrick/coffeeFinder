@@ -2,11 +2,29 @@ import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
 import MobileDetect from "mobile-detect";
-import { Container, Typography, Grid, Link, useTheme, Fab } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Grid,
+  Link,
+  useTheme,
+  Fab,
+} from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../fonts.css";
-import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
+import {
+  ZeroLg,
+  OneLg,
+  OneHalfLg,
+  TwoLg,
+  TwoHalfLg,
+  ThreeLg,
+  ThreeHalfLg,
+  FourLg,
+  FourHalfLg,
+  FiveLg,
+} from "../assets/images";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 import ShareIcon from "@mui/icons-material/Share";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
@@ -49,11 +67,11 @@ const Details = () => {
   }, []);
 
   useEffect(() => {
-    console.log(details);
+    // console.log(details);
   }, [details]);
 
   useEffect(() => {
-    console.log(reviews);
+    // console.log(reviews);
   }, [reviews]);
 
   let newRating;
@@ -63,25 +81,33 @@ const Details = () => {
       newRating = <img style={{ width: "150px" }} alt="rating" src={FiveLg} />;
       break;
     case 4.5:
-      newRating = <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />;
+      newRating = (
+        <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />
+      );
       break;
     case 4:
       newRating = <img style={{ width: "150px" }} alt="rating" src={FourLg} />;
       break;
     case 3.5:
-      newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeHalfLg} />;
+      newRating = (
+        <img style={{ width: "150px" }} alt="rating" src={ThreeHalfLg} />
+      );
       break;
     case 3:
       newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeLg} />;
       break;
     case 2.5:
-      newRating = <img style={{ width: "150px" }} alt="rating" src={TwoHalfLg} />;
+      newRating = (
+        <img style={{ width: "150px" }} alt="rating" src={TwoHalfLg} />
+      );
       break;
     case 2:
       newRating = <img style={{ width: "150px" }} alt="rating" src={TwoLg} />;
       break;
     case 1.5:
-      newRating = <img style={{ width: "150px" }} alt="rating" src={OneHalfLg} />;
+      newRating = (
+        <img style={{ width: "150px" }} alt="rating" src={OneHalfLg} />
+      );
       break;
     case 1:
       newRating = <img style={{ width: "150px" }} alt="rating" src={OneLg} />;
@@ -102,7 +128,9 @@ const Details = () => {
         return <img style={{ width: "100px" }} alt="rating" src={FourLg} />;
 
       case 3.5:
-        return <img style={{ width: "100px" }} alt="rating" src={ThreeHalfLg} />;
+        return (
+          <img style={{ width: "100px" }} alt="rating" src={ThreeHalfLg} />
+        );
 
       case 3:
         return <img style={{ width: "100px" }} alt="rating" src={ThreeLg} />;
@@ -132,13 +160,17 @@ const Details = () => {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude, longitude } = coords;
-          setMapsUrl(`http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${details?.coordinates.latitude},${details?.coordinates.longitude}`);
+          setMapsUrl(
+            `http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${details?.coordinates.latitude},${details?.coordinates.longitude}`
+          );
         },
         (err) => console.log(err),
         { enableHighAccuracy: true }
       );
     } else if (type.os() !== "iOS") {
-      setMapsUrl(`https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`);
+      setMapsUrl(
+        `https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`
+      );
     }
   };
 
@@ -154,30 +186,97 @@ const Details = () => {
     <>
       {isLoading ? (
         <Grid container justifyContent="center" style={{ marginTop: "85px" }}>
-          <Oval height={80} width={80} color="#add8e6" visible={true} ariaLabel="oval-loading" secondaryColor="##2E2EFF" strokeWidth={3} strokeWidthSecondary={3} />
+          <Oval
+            height={80}
+            width={80}
+            color="#add8e6"
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="##2E2EFF"
+            strokeWidth={3}
+            strokeWidthSecondary={3}
+          />
         </Grid>
       ) : (
         <>
-          <div style={{ backgroundImage: `url(${details?.image_url})`, marginBottom: "36px", backgroundSize: "cover", backgroundPosition: "center" }}>
+          <div
+            style={{
+              backgroundImage: `url(${details?.image_url})`,
+              marginBottom: "36px",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
             <div className="filters">
               <Container style={{ paddingTop: "80px" }}>
-                <Grid container display="flex" direction="row" justifyContent="center" style={{ paddingBottom: "80px" }}>
-                  <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color="white">
-                    <Typography variant="h4" style={{ fontFamily: "TT norms pro", fontWeight: "500", marginBottom: "15px" }}>
+                <Grid
+                  container
+                  display="flex"
+                  direction="row"
+                  justifyContent="center"
+                  style={{ paddingBottom: "80px" }}
+                >
+                  <Grid
+                    item
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="start"
+                    direction="column"
+                    color="white"
+                  >
+                    <Typography
+                      variant="h4"
+                      style={{
+                        fontFamily: "TT norms pro",
+                        fontWeight: "500",
+                        marginBottom: "15px",
+                      }}
+                    >
                       {details?.name}
                     </Typography>
-                    <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
+                    <Grid
+                      display="flex"
+                      direction="row"
+                      alignItems="center"
+                      style={{ marginBottom: "10px" }}
+                    >
                       {newRating}
-                      <Typography style={{ fontFamily: "TT norms pro", marginLeft: "10px" }}>{`${reviews?.total} reviews`}</Typography>
+                      <Typography
+                        style={{
+                          fontFamily: "TT norms pro",
+                          marginLeft: "10px",
+                        }}
+                      >{`${reviews?.total} reviews`}</Typography>
                     </Grid>
-                    <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                    <Grid
+                      display="flex"
+                      direction="row"
+                      style={{ marginBottom: "15px" }}
+                    >
+                      <Typography
+                        style={{ fontFamily: "TT norms pro" }}
+                      >{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
                     </Grid>
-                    <Grid container display="flex" direction="row" justifyContent="start" alignItems="start">
-                      <Fab style={{ marginRight: "10px" }} color="primary" size="small" onClick={() => openMaps()}>
+                    <Grid
+                      container
+                      display="flex"
+                      direction="row"
+                      justifyContent="start"
+                      alignItems="start"
+                    >
+                      <Fab
+                        style={{ marginRight: "10px" }}
+                        color="primary"
+                        size="small"
+                        onClick={() => openMaps()}
+                      >
                         <NearMeRoundedIcon />
                       </Fab>
-                      <Fab style={{ marginRight: "10px" }} color="primary" size="small">
+                      <Fab
+                        style={{ marginRight: "10px" }}
+                        color="primary"
+                        size="small"
+                      >
                         <ShareIcon />
                       </Fab>
                       <Fab color="primary" size="small">
@@ -193,14 +292,35 @@ const Details = () => {
           <Container>
             <Grid container>
               {reviews?.reviews.map((item) => (
-                <Grid key={item.id} xs={12} style={{ color: "white", borderRadius: "15px", padding: "15px", marginBottom: "15px", backgroundColor: theme.palette.primary.main }}>
+                <Grid
+                  key={item.id}
+                  xs={12}
+                  style={{
+                    color: "white",
+                    borderRadius: "15px",
+                    padding: "15px",
+                    marginBottom: "15px",
+                    backgroundColor: theme.palette.primary.main,
+                  }}
+                >
                   <Grid item>
-                    <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-                    <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
+                    <Typography style={{ fontFamily: "TT norms pro" }}>
+                      {item.user.name}
+                    </Typography>
+                    <Typography style={{ fontFamily: "TT norms pro" }}>
+                      {item.time_created}
+                    </Typography>
                     <Grid>{getRatingImage(item.rating)}</Grid>
-                    <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                    <Typography style={{ fontFamily: "TT norms pro" }}>
+                      {item.text}
+                    </Typography>
                   </Grid>
-                  <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="end"
+                    style={{ paddingTop: "15px", paddingRight: "10px" }}
+                  >
                     <Link href={item.url} color="inherit" underline="none">
                       See Full Review
                     </Link>

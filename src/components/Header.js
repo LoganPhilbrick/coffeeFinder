@@ -14,7 +14,7 @@ import { searchCoffeeData } from "../api";
 import { APIKEY } from "../App";
 import { Button, IconButton } from "@mui/material";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -58,18 +58,34 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }) {
+export default function Header({
+  setLoaded,
+  setInfo,
+  setIsLoading,
+  handleClick,
+}) {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toHomePage = () => {
     navigate("/");
   };
 
+  const toHomeThenSearch = () => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      handleClick();
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
+      <AppBar
+        position="static"
+        style={{ paddingTop: "10px", paddingBottom: "10px" }}
+      >
         <Toolbar>
           <Icon
             size="large"
@@ -94,11 +110,17 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
             CoffeeFinder
           </Typography>
           {isSmallScreen ? (
-            <IconButton size="large" edge="start" color="inherit" sx={{ mr: 1.5 }} onClick={handleClick}>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              sx={{ mr: 1.5 }}
+              onClick={toHomeThenSearch}
+            >
               <NearMeRoundedIcon />
             </IconButton>
           ) : (
-            <Button variant="" onClick={handleClick}>
+            <Button variant="" onClick={toHomeThenSearch}>
               Search Nearby
             </Button>
           )}
@@ -123,7 +145,13 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
             >
               {({ values, handleChange, handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
-                  <StyledInputBase name="location" value={values.location} onChange={handleChange} placeholder="Search in…" inputProps={{ "aria-label": "search" }} />
+                  <StyledInputBase
+                    name="location"
+                    value={values.location}
+                    onChange={handleChange}
+                    placeholder="Search in…"
+                    inputProps={{ "aria-label": "search" }}
+                  />
                 </form>
               )}
             </Formik>

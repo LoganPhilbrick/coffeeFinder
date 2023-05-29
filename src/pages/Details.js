@@ -9,6 +9,7 @@ import {
   Link,
   useTheme,
   Fab,
+  Button,
 } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
@@ -33,6 +34,7 @@ const Details = () => {
   const [details, setDetails] = useState();
   const [reviews, setReviews] = useState();
   const [mapsUrl, setMapsUrl] = useState();
+  const [picsOrReviews, setPicsOrReviews] = useState(true);
 
   const { id: paramId } = useParams();
 
@@ -67,11 +69,11 @@ const Details = () => {
   }, []);
 
   useEffect(() => {
-    // console.log(details);
+    console.log(details);
   }, [details]);
 
   useEffect(() => {
-    // console.log(reviews);
+    console.log(reviews);
   }, [reviews]);
 
   let newRating;
@@ -289,45 +291,86 @@ const Details = () => {
             </div>
           </div>
 
-          <Container>
-            <Grid container>
-              {reviews?.reviews.map((item) => (
-                <Grid
-                  key={item.id}
-                  xs={12}
-                  style={{
-                    color: "white",
-                    borderRadius: "15px",
-                    padding: "15px",
-                    marginBottom: "15px",
-                    backgroundColor: theme.palette.primary.main,
-                  }}
-                >
-                  <Grid item>
-                    <Typography style={{ fontFamily: "TT norms pro" }}>
-                      {item.user.name}
-                    </Typography>
-                    <Typography style={{ fontFamily: "TT norms pro" }}>
-                      {item.time_created}
-                    </Typography>
-                    <Grid>{getRatingImage(item.rating)}</Grid>
-                    <Typography style={{ fontFamily: "TT norms pro" }}>
-                      {item.text}
-                    </Typography>
-                  </Grid>
-                  <Grid
-                    container
-                    direction="row"
-                    justifyContent="end"
-                    style={{ paddingTop: "15px", paddingRight: "10px" }}
-                  >
-                    <Link href={item.url} color="inherit" underline="none">
-                      See Full Review
-                    </Link>
-                  </Grid>
-                </Grid>
-              ))}
+          <Container
+            style={{
+              marginBottom: "36px",
+            }}
+          >
+            <Grid
+              container
+              display="flex"
+              direction="row"
+              justifyContent="space-evenly"
+            >
+              <Button onClick={() => setPicsOrReviews(true)}>Reviews</Button>
+              <Button onClick={() => setPicsOrReviews(false)}>Photos</Button>
             </Grid>
+          </Container>
+
+          <Container>
+            {picsOrReviews ? (
+              <Grid container>
+                {reviews?.reviews.map((item) => (
+                  <Grid
+                    item
+                    key={item.id}
+                    xs={12}
+                    style={{
+                      color: "white",
+                      borderRadius: "15px",
+                      padding: "15px",
+                      marginBottom: "36px",
+                      backgroundColor: theme.palette.primary.main,
+                    }}
+                  >
+                    <Grid item>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>
+                        {item.user.name}
+                      </Typography>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>
+                        {item.time_created}
+                      </Typography>
+                      <Grid>{getRatingImage(item.rating)}</Grid>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>
+                        {item.text}
+                      </Typography>
+                    </Grid>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="end"
+                      style={{ paddingTop: "15px", paddingRight: "10px" }}
+                    >
+                      <Link href={item.url} color="inherit" underline="none">
+                        See Full Review
+                      </Link>
+                    </Grid>
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Grid container justifyContent="center">
+                {details?.photos.map((item, index) => (
+                  <Grid
+                    item
+                    key={index}
+                    // sm={4}
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <img
+                      alt={item}
+                      src={item}
+                      style={{
+                        width: "90%",
+                        objectFit: "cover",
+                        borderRadius: "15px",
+                        marginBottom: "36px",
+                      }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            )}
           </Container>
         </>
       )}

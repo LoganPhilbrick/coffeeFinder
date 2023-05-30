@@ -26,7 +26,7 @@ import {
   FourHalfLg,
   FiveLg,
 } from "../assets/images";
-import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
+import NavigationRoundedIcon from "@mui/icons-material/NavigationRounded";
 import ShareIcon from "@mui/icons-material/Share";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
@@ -204,7 +204,7 @@ const Details = () => {
           <div
             style={{
               backgroundImage: `url(${details?.image_url})`,
-              marginBottom: "36px",
+              marginBottom: "48px",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -264,24 +264,27 @@ const Details = () => {
                       display="flex"
                       direction="row"
                       justifyContent="start"
-                      alignItems="start"
+                      alignItems="baseline"
                     >
                       <Fab
-                        style={{ marginRight: "10px" }}
                         color="primary"
-                        size="small"
-                        onClick={() => openMaps()}
+                        variant="extended"
+                        style={{ marginRight: "10px" }}
                       >
-                        <NearMeRoundedIcon />
+                        <NavigationRoundedIcon sx={{ mr: 1 }} />
+                        <Typography
+                          style={{ marginTop: "2px", marginRight: "5px" }}
+                          variant="button"
+                          onClick={() => openMaps()}
+                        >
+                          {" "}
+                          directions
+                        </Typography>
                       </Fab>
-                      <Fab
-                        style={{ marginRight: "10px" }}
-                        color="primary"
-                        size="small"
-                      >
+                      <Fab style={{ marginRight: "10px" }} color="primary">
                         <ShareIcon />
                       </Fab>
-                      <Fab color="primary" size="small">
+                      <Fab color="primary">
                         <StarRoundedIcon />
                       </Fab>
                     </Grid>
@@ -293,18 +296,74 @@ const Details = () => {
 
           <Container
             style={{
-              marginBottom: "36px",
+              marginBottom: "48px",
             }}
           >
-            <Grid
-              container
-              display="flex"
-              direction="row"
-              justifyContent="space-evenly"
-            >
-              <Button onClick={() => setPicsOrReviews(true)}>Reviews</Button>
-              <Button onClick={() => setPicsOrReviews(false)}>Photos</Button>
-            </Grid>
+            {picsOrReviews ? (
+              <Grid
+                container
+                display="flex"
+                direction="row"
+                justifyContent="center"
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "0",
+                    padding: "20px",
+                    paddingLeft: "30px",
+                    paddingRight: "30px",
+                  }}
+                  onClick={() => setPicsOrReviews(true)}
+                >
+                  Reviews
+                </Button>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderRadius: "0",
+                    padding: "20px",
+                    paddingLeft: "30px",
+                    paddingRight: "30px",
+                  }}
+                  onClick={() => setPicsOrReviews(false)}
+                >
+                  Photos
+                </Button>
+              </Grid>
+            ) : (
+              <Grid
+                container
+                display="flex"
+                direction="row"
+                justifyContent="center"
+              >
+                <Button
+                  variant="outlined"
+                  sx={{
+                    borderRadius: "0",
+                    padding: "20px",
+                    paddingLeft: "30px",
+                    paddingRight: "30px",
+                  }}
+                  onClick={() => setPicsOrReviews(true)}
+                >
+                  Reviews
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "0",
+                    padding: "20px",
+                    paddingLeft: "30px",
+                    paddingRight: "30px",
+                  }}
+                  onClick={() => setPicsOrReviews(false)}
+                >
+                  Photos
+                </Button>
+              </Grid>
+            )}
           </Container>
 
           <Container>

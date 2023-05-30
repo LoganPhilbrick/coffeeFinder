@@ -270,12 +270,12 @@ const Details = () => {
                         color="primary"
                         variant="extended"
                         style={{ marginRight: "10px" }}
+                        onClick={() => openMaps()}
                       >
                         <NavigationRoundedIcon sx={{ mr: 1 }} />
                         <Typography
                           style={{ marginTop: "2px", marginRight: "5px" }}
                           variant="button"
-                          onClick={() => openMaps()}
                         >
                           {" "}
                           directions

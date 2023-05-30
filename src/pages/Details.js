@@ -27,8 +27,8 @@ import {
   FiveLg,
 } from "../assets/images";
 import NavigationRoundedIcon from "@mui/icons-material/NavigationRounded";
-import ShareIcon from "@mui/icons-material/Share";
-import StarRoundedIcon from "@mui/icons-material/StarRounded";
+// import ShareIcon from "@mui/icons-material/Share";
+// import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
 const Details = () => {
   const [details, setDetails] = useState();
@@ -281,12 +281,12 @@ const Details = () => {
                           directions
                         </Typography>
                       </Fab>
-                      <Fab style={{ marginRight: "10px" }} color="primary">
+                      {/* <Fab style={{ marginRight: "10px" }} color="primary">
                         <ShareIcon />
                       </Fab>
                       <Fab color="primary">
                         <StarRoundedIcon />
-                      </Fab>
+                      </Fab> */}
                     </Grid>
                   </Grid>
                 </Grid>
@@ -309,7 +309,7 @@ const Details = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    borderRadius: "0",
+                    borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
@@ -321,7 +321,7 @@ const Details = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    borderRadius: "0",
+                    borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
@@ -341,7 +341,7 @@ const Details = () => {
                 <Button
                   variant="outlined"
                   sx={{
-                    borderRadius: "0",
+                    borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
@@ -353,7 +353,7 @@ const Details = () => {
                 <Button
                   variant="contained"
                   sx={{
-                    borderRadius: "0",
+                    borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",

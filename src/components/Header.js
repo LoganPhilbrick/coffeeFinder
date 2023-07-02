@@ -58,12 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header({
-  setLoaded,
-  setInfo,
-  setIsLoading,
-  handleClick,
-}) {
+export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }) {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const navigate = useNavigate();
@@ -77,15 +72,14 @@ export default function Header({
     if (location.pathname !== "/") {
       navigate("/");
       handleClick();
+    } else {
+      handleClick();
     }
   };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        style={{ paddingTop: "10px", paddingBottom: "10px" }}
-      >
+      <AppBar position="static" style={{ paddingTop: "10px", paddingBottom: "10px" }}>
         <Toolbar>
           <Icon
             size="large"
@@ -110,13 +104,7 @@ export default function Header({
             CoffeeFinder
           </Typography>
           {isSmallScreen ? (
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              sx={{ mr: 1.5 }}
-              onClick={toHomeThenSearch}
-            >
+            <IconButton size="large" edge="start" color="inherit" sx={{ mr: 1.5 }} onClick={toHomeThenSearch}>
               <NearMeRoundedIcon />
             </IconButton>
           ) : (
@@ -145,13 +133,7 @@ export default function Header({
             >
               {({ values, handleChange, handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
-                  <StyledInputBase
-                    name="location"
-                    value={values.location}
-                    onChange={handleChange}
-                    placeholder="Search in…"
-                    inputProps={{ "aria-label": "search" }}
-                  />
+                  <StyledInputBase name="location" value={values.location} onChange={handleChange} placeholder="Search in…" inputProps={{ "aria-label": "search" }} />
                 </form>
               )}
             </Formik>

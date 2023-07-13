@@ -101,7 +101,7 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
               toHomePage();
             }}
           >
-            CoffeeFinder
+            CoffeeCompass
           </Typography>
           {isSmallScreen ? (
             <IconButton size="large" edge="start" color="inherit" sx={{ mr: 1.5 }} onClick={toHomeThenSearch}>

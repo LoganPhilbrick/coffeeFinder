@@ -47,7 +47,7 @@ const HomePage = () => {
               ) : (
                 <Grid container direction="row" justifyContent="center" alignItems="center" style={{ minHeight: "20vh" }}>
                   <Typography>Click the button to search for coffee near you!</Typography>
-                  <Button variant="contained" onClick={() => handleClick()} sx={{ ml: 1.5 }}>
+                  <Button variant="contained" style={{ backgroundColor: "#A3B36B" }} onClick={() => handleClick()} sx={{ ml: 1.5 }}>
                     Search Nearby
                   </Button>
                 </Grid>

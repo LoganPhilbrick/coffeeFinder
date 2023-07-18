@@ -2,30 +2,11 @@ import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
 import MobileDetect from "mobile-detect";
-import {
-  Container,
-  Typography,
-  Grid,
-  Link,
-  useTheme,
-  Fab,
-  Button,
-} from "@mui/material";
+import { Container, Typography, Grid, Link, Fab, Button } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../fonts.css";
-import {
-  ZeroLg,
-  OneLg,
-  OneHalfLg,
-  TwoLg,
-  TwoHalfLg,
-  ThreeLg,
-  ThreeHalfLg,
-  FourLg,
-  FourHalfLg,
-  FiveLg,
-} from "../assets/images";
+import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 import NavigationRoundedIcon from "@mui/icons-material/NavigationRounded";
 // import ShareIcon from "@mui/icons-material/Share";
 // import StarRoundedIcon from "@mui/icons-material/StarRounded";
@@ -83,33 +64,25 @@ const Details = () => {
       newRating = <img style={{ width: "150px" }} alt="rating" src={FiveLg} />;
       break;
     case 4.5:
-      newRating = (
-        <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />
-      );
+      newRating = <img style={{ width: "150px" }} alt="rating" src={FourHalfLg} />;
       break;
     case 4:
       newRating = <img style={{ width: "150px" }} alt="rating" src={FourLg} />;
       break;
     case 3.5:
-      newRating = (
-        <img style={{ width: "150px" }} alt="rating" src={ThreeHalfLg} />
-      );
+      newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeHalfLg} />;
       break;
     case 3:
       newRating = <img style={{ width: "150px" }} alt="rating" src={ThreeLg} />;
       break;
     case 2.5:
-      newRating = (
-        <img style={{ width: "150px" }} alt="rating" src={TwoHalfLg} />
-      );
+      newRating = <img style={{ width: "150px" }} alt="rating" src={TwoHalfLg} />;
       break;
     case 2:
       newRating = <img style={{ width: "150px" }} alt="rating" src={TwoLg} />;
       break;
     case 1.5:
-      newRating = (
-        <img style={{ width: "150px" }} alt="rating" src={OneHalfLg} />
-      );
+      newRating = <img style={{ width: "150px" }} alt="rating" src={OneHalfLg} />;
       break;
     case 1:
       newRating = <img style={{ width: "150px" }} alt="rating" src={OneLg} />;
@@ -130,9 +103,7 @@ const Details = () => {
         return <img style={{ width: "100px" }} alt="rating" src={FourLg} />;
 
       case 3.5:
-        return (
-          <img style={{ width: "100px" }} alt="rating" src={ThreeHalfLg} />
-        );
+        return <img style={{ width: "100px" }} alt="rating" src={ThreeHalfLg} />;
 
       case 3:
         return <img style={{ width: "100px" }} alt="rating" src={ThreeLg} />;
@@ -154,25 +125,19 @@ const Details = () => {
     }
   }
 
-  const theme = useTheme();
-
   const detectDevice = () => {
     let type = new MobileDetect(window.navigator.userAgent);
     if (type.os() === "iOS") {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude, longitude } = coords;
-          setMapsUrl(
-            `http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${details?.coordinates.latitude},${details?.coordinates.longitude}`
-          );
+          setMapsUrl(`http://maps.apple.com/?saddr=${latitude},${longitude}&daddr=${details?.coordinates.latitude},${details?.coordinates.longitude}`);
         },
         (err) => console.log(err),
         { enableHighAccuracy: true }
       );
     } else if (type.os() !== "iOS") {
-      setMapsUrl(
-        `https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`
-      );
+      setMapsUrl(`https://www.google.com/maps/dir/?api=1&destination=${details?.coordinates.latitude}%2C%20${details?.coordinates.longitude}`);
     }
   };
 
@@ -188,16 +153,7 @@ const Details = () => {
     <>
       {isLoading ? (
         <Grid container justifyContent="center" style={{ marginTop: "85px" }}>
-          <Oval
-            height={80}
-            width={80}
-            color="#add8e6"
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor="##2E2EFF"
-            strokeWidth={3}
-            strokeWidthSecondary={3}
-          />
+          <Oval height={80} width={80} color="#add8e6" visible={true} ariaLabel="oval-loading" secondaryColor="##2E2EFF" strokeWidth={3} strokeWidthSecondary={3} />
         </Grid>
       ) : (
         <>
@@ -211,21 +167,8 @@ const Details = () => {
           >
             <div className="filters">
               <Container style={{ paddingTop: "80px" }}>
-                <Grid
-                  container
-                  display="flex"
-                  direction="row"
-                  justifyContent="center"
-                  style={{ paddingBottom: "80px" }}
-                >
-                  <Grid
-                    item
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="start"
-                    direction="column"
-                    color="white"
-                  >
+                <Grid container display="flex" direction="row" justifyContent="center" style={{ paddingBottom: "80px" }}>
+                  <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color="white">
                     <Typography
                       variant="h4"
                       style={{
@@ -236,12 +179,7 @@ const Details = () => {
                     >
                       {details?.name}
                     </Typography>
-                    <Grid
-                      display="flex"
-                      direction="row"
-                      alignItems="center"
-                      style={{ marginBottom: "10px" }}
-                    >
+                    <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
                       {newRating}
                       <Typography
                         style={{
@@ -250,33 +188,13 @@ const Details = () => {
                         }}
                       >{`${reviews?.total} reviews`}</Typography>
                     </Grid>
-                    <Grid
-                      display="flex"
-                      direction="row"
-                      style={{ marginBottom: "15px" }}
-                    >
-                      <Typography
-                        style={{ fontFamily: "TT norms pro" }}
-                      >{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                    <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
                     </Grid>
-                    <Grid
-                      container
-                      display="flex"
-                      direction="row"
-                      justifyContent="start"
-                      alignItems="baseline"
-                    >
-                      <Fab
-                        color="primary"
-                        variant="extended"
-                        style={{ marginRight: "10px" }}
-                        onClick={() => openMaps()}
-                      >
+                    <Grid container display="flex" direction="row" justifyContent="start" alignItems="baseline">
+                      <Fab variant="extended" style={{ backgroundColor: "#F0E2A3", color: "#664E4C", marginRight: "10px" }} onClick={() => openMaps()}>
                         <NavigationRoundedIcon sx={{ mr: 1 }} />
-                        <Typography
-                          style={{ marginTop: "2px", marginRight: "5px" }}
-                          variant="button"
-                        >
+                        <Typography style={{ marginTop: "2px", marginRight: "5px" }} variant="button">
                           {" "}
                           directions
                         </Typography>
@@ -300,12 +218,7 @@ const Details = () => {
             }}
           >
             {picsOrReviews ? (
-              <Grid
-                container
-                display="flex"
-                direction="row"
-                justifyContent="center"
-              >
+              <Grid container display="flex" direction="row" justifyContent="center">
                 <Button
                   variant="contained"
                   sx={{
@@ -313,18 +226,22 @@ const Details = () => {
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
+                    backgroundColor: "#F0E2A3",
+                    color: "#664E4C",
                   }}
                   onClick={() => setPicsOrReviews(true)}
                 >
                   Reviews
                 </Button>
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   sx={{
                     borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
+                    color: "#664E4C",
+                    backgroundColor: "white",
                   }}
                   onClick={() => setPicsOrReviews(false)}
                 >
@@ -332,19 +249,16 @@ const Details = () => {
                 </Button>
               </Grid>
             ) : (
-              <Grid
-                container
-                display="flex"
-                direction="row"
-                justifyContent="center"
-              >
+              <Grid container display="flex" direction="row" justifyContent="center">
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   sx={{
                     borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
+                    color: "#664E4C",
+                    backgroundColor: "white",
                   }}
                   onClick={() => setPicsOrReviews(true)}
                 >
@@ -357,6 +271,8 @@ const Details = () => {
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
+                    backgroundColor: "#F0E2A3",
+                    color: "#664E4C",
                   }}
                   onClick={() => setPicsOrReviews(false)}
                 >
@@ -379,29 +295,18 @@ const Details = () => {
                       borderRadius: "15px",
                       padding: "15px",
                       marginBottom: "36px",
-                      backgroundColor: theme.palette.primary.main,
+                      backgroundColor: "#664E4C",
                     }}
                   >
                     <Grid item>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>
-                        {item.user.name}
-                      </Typography>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>
-                        {item.time_created}
-                      </Typography>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
                       <Grid>{getRatingImage(item.rating)}</Grid>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>
-                        {item.text}
-                      </Typography>
+                      <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
                     </Grid>
-                    <Grid
-                      container
-                      direction="row"
-                      justifyContent="end"
-                      style={{ paddingTop: "15px", paddingRight: "10px" }}
-                    >
+                    <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
                       <Link href={item.url} color="inherit" underline="none">
-                        See Full Review
+                        See Full Review...
                       </Link>
                     </Grid>
                   </Grid>

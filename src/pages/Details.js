@@ -222,6 +222,10 @@ const Details = () => {
                 <Button
                   variant="contained"
                   sx={{
+                    ":hover": {
+                      bgcolor: "#664E4C",
+                      color: "#F0E2A3",
+                    },
                     borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
@@ -236,6 +240,10 @@ const Details = () => {
                 <Button
                   variant="contained"
                   sx={{
+                    ":hover": {
+                      bgcolor: "#664E4C",
+                      color: "#F0E2A3",
+                    },
                     borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",
@@ -253,6 +261,10 @@ const Details = () => {
                 <Button
                   variant="contained"
                   sx={{
+                    ":hover": {
+                      bgcolor: "#664E4C",
+                      color: "#F0E2A3",
+                    },
                     borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
@@ -267,6 +279,10 @@ const Details = () => {
                 <Button
                   variant="contained"
                   sx={{
+                    ":hover": {
+                      bgcolor: "#664E4C",
+                      color: "#F0E2A3",
+                    },
                     borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",

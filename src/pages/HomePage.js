@@ -1,4 +1,4 @@
-import { Container, Grid, Button, Typography } from "@mui/material";
+import { Container, Grid, Button, Typography, useTheme } from "@mui/material";
 import { Oval } from "react-loader-spinner";
 import CoffeeCard from "../components/CoffeeCard";
 import { useOutletContext } from "react-router-dom";
@@ -12,13 +12,24 @@ const HomePage = () => {
   const calculateDelay = context[6];
   const isSmallScreen = context[7];
 
+  const theme = useTheme();
+
   return (
     <div>
       <Container maxWidth="lg" style={{ marginTop: "40px" }}>
         <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
           {isLoading ? (
             <Grid container justifyContent="center" style={{ marginLeft: 15, marginTop: "85px" }}>
-              <Oval height={80} width={80} color="#add8e6" visible={true} ariaLabel="oval-loading" secondaryColor="##2E2EFF" strokeWidth={3} strokeWidthSecondary={3} />
+              <Oval
+                height={80}
+                width={80}
+                color={theme.palette.success.light}
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor={theme.palette.success.main}
+                strokeWidth={3}
+                strokeWidthSecondary={3}
+              />
             </Grid>
           ) : (
             <>
@@ -47,7 +58,7 @@ const HomePage = () => {
               ) : (
                 <Grid container direction="row" justifyContent="center" alignItems="center" style={{ minHeight: "20vh" }}>
                   <Typography>Click the button to search for coffee near you!</Typography>
-                  <Button variant="contained" style={{ backgroundColor: "#A3B36B" }} onClick={() => handleClick()} sx={{ ml: 1.5 }}>
+                  <Button variant="contained" style={{ backgroundColor: theme.palette.success.light }} onClick={() => handleClick()} sx={{ ml: 1.5 }}>
                     Search Nearby
                   </Button>
                 </Grid>

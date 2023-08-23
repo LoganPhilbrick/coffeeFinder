@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fetchCoffeeData } from "./api";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 
@@ -10,6 +10,7 @@ function App() {
   const [info, setInfo] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // add a new state variable
+  const theme = useTheme();
 
   const handleClick = () => {
     console.log("Button clicked");
@@ -37,7 +38,7 @@ function App() {
   const isSmallScreen = useMediaQuery("(max-width:784px)");
 
   return (
-    <div>
+    <div style={{ backgroundColor: theme.palette.background.default }}>
       <Header setLoaded={setLoaded} setInfo={setInfo} setIsLoading={setIsLoading} handleClick={handleClick} />
       <Outlet context={[info, loaded, isLoading, setLoaded, setInfo, setIsLoading, calculateDelay, isSmallScreen, handleClick]} />
     </div>

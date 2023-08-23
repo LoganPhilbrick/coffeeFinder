@@ -2,7 +2,7 @@ import { fetchDetails, fetchReviews } from "../api";
 import { APIKEY } from "../App";
 import { useEffect, useState } from "react";
 import MobileDetect from "mobile-detect";
-import { Container, Typography, Grid, Link, Fab, Button } from "@mui/material";
+import { Container, Typography, Grid, Fab, Button, useTheme } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../fonts.css";
@@ -16,6 +16,8 @@ const Details = () => {
   const [reviews, setReviews] = useState();
   const [mapsUrl, setMapsUrl] = useState();
   const [picsOrReviews, setPicsOrReviews] = useState(true);
+
+  const theme = useTheme();
 
   const { id: paramId } = useParams();
 
@@ -153,7 +155,16 @@ const Details = () => {
     <>
       {isLoading ? (
         <Grid container justifyContent="center" style={{ marginTop: "85px" }}>
-          <Oval height={80} width={80} color="#add8e6" visible={true} ariaLabel="oval-loading" secondaryColor="##2E2EFF" strokeWidth={3} strokeWidthSecondary={3} />
+          <Oval
+            height={80}
+            width={80}
+            color={theme.palette.success.light}
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor={theme.palette.success.main}
+            strokeWidth={3}
+            strokeWidthSecondary={3}
+          />
         </Grid>
       ) : (
         <>
@@ -168,7 +179,7 @@ const Details = () => {
             <div className="filters">
               <Container style={{ paddingTop: "80px" }}>
                 <Grid container display="flex" direction="row" justifyContent="center" style={{ paddingBottom: "80px" }}>
-                  <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color="white">
+                  <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color={theme.palette.primary.contrastText}>
                     <Typography
                       variant="h4"
                       style={{
@@ -186,25 +197,23 @@ const Details = () => {
                           fontFamily: "TT norms pro",
                           marginLeft: "10px",
                         }}
+                        color={theme.palette.primary.contrastText}
                       >{`${reviews?.total} reviews`}</Typography>
                     </Grid>
                     <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                      <Typography
+                        style={{ fontFamily: "TT norms pro" }}
+                        color={theme.palette.primary.contrastText}
+                      >{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
                     </Grid>
                     <Grid container display="flex" direction="row" justifyContent="start" alignItems="baseline">
-                      <Fab variant="extended" style={{ backgroundColor: "#F0E2A3", color: "#664E4C", marginRight: "10px" }} onClick={() => openMaps()}>
+                      <Fab variant="extended" style={{ backgroundColor: theme.palette.success.light, color: theme.palette.primary.contrastText, marginRight: "10px" }} onClick={() => openMaps()}>
                         <NavigationRoundedIcon sx={{ mr: 1 }} />
                         <Typography style={{ marginTop: "2px", marginRight: "5px" }} variant="button">
                           {" "}
                           directions
                         </Typography>
                       </Fab>
-                      {/* <Fab style={{ marginRight: "10px" }} color="primary">
-                        <ShareIcon />
-                      </Fab>
-                      <Fab color="primary">
-                        <StarRoundedIcon />
-                      </Fab> */}
                     </Grid>
                   </Grid>
                 </Grid>
@@ -223,15 +232,15 @@ const Details = () => {
                   variant="contained"
                   sx={{
                     ":hover": {
-                      bgcolor: "#664E4C",
-                      color: "#F0E2A3",
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
                     },
                     borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
-                    backgroundColor: "#F0E2A3",
-                    color: "#664E4C",
+                    backgroundColor: theme.palette.success.light,
+                    color: theme.palette.primary.contrastText,
                   }}
                   onClick={() => setPicsOrReviews(true)}
                 >
@@ -241,14 +250,14 @@ const Details = () => {
                   variant="contained"
                   sx={{
                     ":hover": {
-                      bgcolor: "#664E4C",
-                      color: "#F0E2A3",
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
                     },
                     borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
-                    color: "#664E4C",
+                    color: theme.palette.success.main,
                     backgroundColor: "white",
                   }}
                   onClick={() => setPicsOrReviews(false)}
@@ -262,14 +271,14 @@ const Details = () => {
                   variant="contained"
                   sx={{
                     ":hover": {
-                      bgcolor: "#664E4C",
-                      color: "#F0E2A3",
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
                     },
                     borderRadius: "10px 0px 0px 10px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
-                    color: "#664E4C",
+                    color: theme.palette.success.main,
                     backgroundColor: "white",
                   }}
                   onClick={() => setPicsOrReviews(true)}
@@ -280,15 +289,15 @@ const Details = () => {
                   variant="contained"
                   sx={{
                     ":hover": {
-                      bgcolor: "#664E4C",
-                      color: "#F0E2A3",
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
                     },
                     borderRadius: "0px 10px 10px 0px",
                     padding: "20px",
                     paddingLeft: "30px",
                     paddingRight: "30px",
-                    backgroundColor: "#F0E2A3",
-                    color: "#664E4C",
+                    backgroundColor: theme.palette.success.light,
+                    color: theme.palette.primary.contrastText,
                   }}
                   onClick={() => setPicsOrReviews(false)}
                 >
@@ -311,7 +320,7 @@ const Details = () => {
                       borderRadius: "15px",
                       padding: "15px",
                       marginBottom: "36px",
-                      backgroundColor: "#664E4C",
+                      backgroundColor: theme.palette.success.light,
                     }}
                   >
                     <Grid item>
@@ -321,28 +330,38 @@ const Details = () => {
                       <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
                     </Grid>
                     <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
-                      <Link href={item.url} color="inherit" underline="none">
+                      <Button
+                        href={item.url}
+                        size="small"
+                        sx={{
+                          ":hover": {
+                            bgcolor: theme.palette.success.main,
+                            color: theme.palette.primary.contrastText,
+                          },
+                          backgroundColor: "white",
+                          color: theme.palette.success.light,
+                          borderRadius: 10,
+                          boxShadow: "none",
+                          pt: 0.9,
+                        }}
+                        variant="contained"
+                      >
                         See Full Review...
-                      </Link>
+                      </Button>
                     </Grid>
                   </Grid>
                 ))}
               </Grid>
             ) : (
-              <Grid container justifyContent="center">
+              <Grid container direction="column" alignItems="center">
                 {details?.photos.map((item, index) => (
-                  <Grid
-                    item
-                    key={index}
-                    // sm={4}
-                    sx={{ display: "flex", justifyContent: "center" }}
-                  >
+                  <Grid item key={index}>
                     <img
                       alt={item}
                       src={item}
                       style={{
-                        width: "90%",
-                        objectFit: "cover",
+                        maxHeight: "60vh",
+                        maxWidth: "80vw",
                         borderRadius: "15px",
                         marginBottom: "36px",
                       }}

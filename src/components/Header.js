@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useMediaQuery } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -63,6 +63,7 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
 
   const navigate = useNavigate();
   const location = useLocation();
+  const theme = useTheme();
 
   const toHomePage = () => {
     navigate("/");
@@ -79,13 +80,13 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ paddingTop: "10px", paddingBottom: "10px", backgroundColor: "#C1D37F" }}>
+      <AppBar position="static" style={{ paddingTop: "10px", paddingBottom: "10px", backgroundColor: theme.palette.success.light }}>
         <Toolbar>
           <Icon
             size="large"
             edge="start"
             color="inherit"
-            sx={{ mr: 3.5, ml: 1 }}
+            sx={{ mr: 3.5, ml: 1, cursor: "pointer" }}
             onClick={() => {
               toHomePage();
             }}
@@ -96,7 +97,7 @@ export default function Header({ setLoaded, setInfo, setIsLoading, handleClick }
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" }, cursor: "pointer" }}
             onClick={() => {
               toHomePage();
             }}

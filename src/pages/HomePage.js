@@ -2,6 +2,7 @@ import { Container, Grid, Button, Typography, useTheme } from "@mui/material";
 import { Oval } from "react-loader-spinner";
 import CoffeeCard from "../components/CoffeeCard";
 import { useOutletContext } from "react-router-dom";
+import "../App.css";
 
 const HomePage = () => {
   const context = useOutletContext();
@@ -16,25 +17,25 @@ const HomePage = () => {
 
   return (
     <div>
-      <Container maxWidth="lg" style={{ marginTop: "40px" }}>
-        <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
-          {isLoading ? (
-            <Grid container justifyContent="center" style={{ marginLeft: 15, marginTop: "85px" }}>
-              <Oval
-                height={80}
-                width={80}
-                color={theme.palette.success.light}
-                visible={true}
-                ariaLabel="oval-loading"
-                secondaryColor={theme.palette.success.main}
-                strokeWidth={3}
-                strokeWidthSecondary={3}
-              />
-            </Grid>
-          ) : (
-            <>
-              {loaded ? (
-                info.map((item, index) => (
+      <Container maxWidth="lg" sx={{ mt: "40px", display: "flex", justifyContent: "center" }}>
+        {isLoading ? (
+          <Grid container justifyContent="center" style={{ marginLeft: 15, marginTop: "85px" }}>
+            <Oval
+              height={80}
+              width={80}
+              color={theme.palette.success.light}
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor={theme.palette.success.main}
+              strokeWidth={3}
+              strokeWidthSecondary={3}
+            />
+          </Grid>
+        ) : (
+          <>
+            {loaded ? (
+              <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
+                {info.map((item, index) => (
                   <Grid item xs="auto" className="fade-in" key={index} style={{ animationDelay: calculateDelay(index) }}>
                     <CoffeeCard
                       key={index}
@@ -47,25 +48,94 @@ const HomePage = () => {
                       id={item.id}
                     />
                   </Grid>
-                ))
-              ) : isSmallScreen ? (
-                <Grid container xs={8} direction="column" justifyContent="center" alignItems="center" style={{ minHeight: "20vh", marginLeft: 15 }}>
-                  <Typography textAlign="center">Click the button or the arrow to search for coffee near you!</Typography>
-                  <Button variant="contained" style={{ backgroundColor: theme.palette.success.light }} onClick={() => handleClick()} sx={{ mt: 2 }}>
-                    Search Nearby
-                  </Button>
+                ))}
+              </Grid>
+            ) : isSmallScreen ? (
+              <>
+                <Button
+                  variant="contained"
+                  sx={{
+                    ":hover": {
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
+                    },
+                    position: "absolute",
+                    bottom: "5vh",
+                    backgroundColor: theme.palette.success.light,
+                    p: 2,
+                    pl: 10,
+                    pr: 10,
+                  }}
+                  onClick={() => handleClick()}
+                >
+                  Search Nearby
+                </Button>
+                <Grid container spacing={3} direction="row" justifyContent="center">
+                  <Grid item xs="auto">
+                    <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+
+                  <Grid item xs="auto">
+                    <Grid className="g2" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+
+                  <Grid item xs="auto">
+                    <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
                 </Grid>
-              ) : (
-                <Grid container direction="row" justifyContent="center" alignItems="center" style={{ minHeight: "20vh" }}>
-                  <Typography>Click the button to search for coffee near you!</Typography>
-                  <Button variant="contained" style={{ backgroundColor: theme.palette.success.light }} onClick={() => handleClick()} sx={{ ml: 1.5 }}>
-                    Search Nearby
-                  </Button>
-                </Grid>
-              )}
-            </>
-          )}
-        </Grid>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="contained"
+                  sx={{
+                    ":hover": {
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
+                    },
+
+                    backgroundColor: theme.palette.success.light,
+                    p: 2,
+                    pl: 10,
+                    pr: 10,
+                  }}
+                  onClick={() => handleClick()}
+                >
+                  Search Nearby
+                </Button>
+                {/* <Grid container spacing={3} direction="row" justifyContent="center">
+                  <Grid item xs="auto">
+                    <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g2" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g2" display="flex" alignItems="center" justifyContent="center" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g2" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                </Grid> */}
+              </>
+            )}
+          </>
+        )}
       </Container>
     </div>
   );

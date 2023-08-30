@@ -1,0 +1,12 @@
+.g1{
+    background: linear-gradient( #C9CAC9, #DEDEDE);
+    border-radius: 5px;
+}
+.g2{
+    background: linear-gradient( #DEDEDE, #F2F3F2); 
+    border-radius: 5px;
+}
+.g3{
+    background: linear-gradient( #F2F3F2, white); 
+    border-radius: 5px;
+}

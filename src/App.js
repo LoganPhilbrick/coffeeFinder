@@ -35,7 +35,7 @@ function App() {
     return `${(index + 1) * 0.1}s`;
   };
 
-  const isSmallScreen = useMediaQuery("(max-width:784px)");
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   return (
     <div style={{ backgroundColor: theme.palette.background.default }}>

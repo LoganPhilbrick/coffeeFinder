@@ -1,4 +1,4 @@
-import { Container, Grid, Button, Typography, useTheme } from "@mui/material";
+import { Container, Grid, Button, useTheme } from "@mui/material";
 import { Oval } from "react-loader-spinner";
 import CoffeeCard from "../components/CoffeeCard";
 import { useOutletContext } from "react-router-dom";

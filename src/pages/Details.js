@@ -154,21 +154,13 @@ const Details = () => {
   return (
     <>
       {isLoading ? (
-        <Grid container justifyContent="center" style={{ marginTop: "85px" }}>
-          <Oval
-            height={80}
-            width={80}
-            color={theme.palette.success.light}
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor={theme.palette.success.main}
-            strokeWidth={3}
-            strokeWidthSecondary={3}
-          />
+        <Grid container justifyContent="center" sx={{ mt: "40vh" }}>
+          <Oval height={80} width={80} color={"#81c784"} visible={true} ariaLabel="oval-loading" secondaryColor={"lightgrey"} strokeWidth={3} strokeWidthSecondary={3} />
         </Grid>
       ) : (
         <>
           <div
+            className="fade-in"
             style={{
               backgroundImage: `url(${details?.image_url})`,
               marginBottom: "48px",
@@ -222,6 +214,7 @@ const Details = () => {
           </div>
 
           <Container
+            className="fade-in"
             style={{
               marginBottom: "48px",
             }}
@@ -307,7 +300,7 @@ const Details = () => {
             )}
           </Container>
 
-          <Container>
+          <Container className="fade-in">
             {picsOrReviews ? (
               <Grid container>
                 {reviews?.reviews.map((item) => (

@@ -12,26 +12,18 @@ const HomePage = () => {
   const loaded = context[1];
   const calculateDelay = context[6];
   const isSmallScreen = context[7];
+  const isMedScreen = context[9];
 
   const theme = useTheme();
 
   return (
     <div>
-      <Container maxWidth="lg" sx={{ mt: "40px", display: "flex", justifyContent: "center" }}>
-        {isLoading ? (
-          <Grid container justifyContent="center" style={{ marginLeft: 15, marginTop: "85px" }}>
-            <Oval
-              height={80}
-              width={80}
-              color={theme.palette.success.light}
-              visible={true}
-              ariaLabel="oval-loading"
-              secondaryColor={theme.palette.success.main}
-              strokeWidth={3}
-              strokeWidthSecondary={3}
-            />
-          </Grid>
-        ) : (
+      {isLoading ? (
+        <Grid container justifyContent="center" sx={{ mt: "40vh" }}>
+          <Oval height={80} width={80} color={"#81c784"} visible={true} ariaLabel="oval-loading" secondaryColor={"lightgrey"} strokeWidth={3} strokeWidthSecondary={3} />
+        </Grid>
+      ) : (
+        <Container maxWidth="lg" sx={{ mt: "40px", display: "flex", justifyContent: "center" }}>
           <>
             {loaded ? (
               <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
@@ -84,7 +76,7 @@ const HomePage = () => {
                   </Grid>
                 </Grid>
               </>
-            ) : (
+            ) : isMedScreen ? (
               <>
                 <Button
                   variant="contained"
@@ -93,7 +85,8 @@ const HomePage = () => {
                       bgcolor: theme.palette.success.main,
                       color: theme.palette.primary.contrastText,
                     },
-
+                    position: "absolute",
+                    bottom: "10vh",
                     backgroundColor: theme.palette.success.light,
                     p: 2,
                     pl: 10,
@@ -103,7 +96,48 @@ const HomePage = () => {
                 >
                   Search Nearby
                 </Button>
-                {/* <Grid container spacing={3} direction="row" justifyContent="center">
+                <Grid container spacing={3} direction="row" justifyContent="center">
+                  <Grid item xs="auto">
+                    <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g2" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g2" display="flex" alignItems="center" justifyContent="center" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                  <Grid item xs="auto">
+                    <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
+                  </Grid>
+                </Grid>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="contained"
+                  sx={{
+                    ":hover": {
+                      bgcolor: theme.palette.success.main,
+                      color: theme.palette.primary.contrastText,
+                    },
+                    position: "absolute",
+                    bottom: "10vh",
+                    backgroundColor: theme.palette.success.light,
+                    p: 2,
+                    pl: 10,
+                    pr: 10,
+                  }}
+                  onClick={() => handleClick()}
+                >
+                  Search Nearby
+                </Button>
+                <Grid container spacing={3} direction="row" justifyContent="center">
                   <Grid item xs="auto">
                     <Grid className="g1" style={{ height: 170, width: 350 }}></Grid>
                   </Grid>
@@ -131,12 +165,12 @@ const HomePage = () => {
                   <Grid item xs="auto">
                     <Grid className="g3" style={{ height: 170, width: 350 }}></Grid>
                   </Grid>
-                </Grid> */}
+                </Grid>
               </>
             )}
           </>
-        )}
-      </Container>
+        </Container>
+      )}
     </div>
   );
 };

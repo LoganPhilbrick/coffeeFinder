@@ -29,7 +29,7 @@ code {
 
 .fade-in {
   opacity: 0;
-  animation: fade-in 1s ease-out forwards;
+  animation: fade-in .5s ease-out forwards;
 }
 
 @keyframes fade-in {

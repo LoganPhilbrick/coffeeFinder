@@ -35,12 +35,13 @@ function App() {
     return `${(index + 1) * 0.1}s`;
   };
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery("(max-width:771px)");
+  const isMedScreen = useMediaQuery("(max-width:1145px)");
 
   return (
     <div style={{ backgroundColor: theme.palette.background.default }}>
       <Header setLoaded={setLoaded} setInfo={setInfo} setIsLoading={setIsLoading} handleClick={handleClick} />
-      <Outlet context={[info, loaded, isLoading, setLoaded, setInfo, setIsLoading, calculateDelay, isSmallScreen, handleClick]} />
+      <Outlet context={[info, loaded, isLoading, setLoaded, setInfo, setIsLoading, calculateDelay, isSmallScreen, handleClick, isMedScreen]} />
     </div>
   );
 }

@@ -200,7 +200,7 @@ const Details = () => {
                           {newRating}
                           <Typography
                             style={{
-                              fontFamily: "TT norms pro",
+                              fontFamily: "Roboto",
                               marginLeft: "10px",
                             }}
                             color={theme.palette.primary.contrastText}
@@ -208,7 +208,7 @@ const Details = () => {
                         </Grid>
                         <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
                           <Typography
-                            style={{ fontFamily: "TT norms pro" }}
+                            style={{ fontFamily: "Roboto" }}
                             color={theme.palette.primary.contrastText}
                           >{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
                         </Grid>
@@ -331,12 +331,20 @@ const Details = () => {
                           }}
                         >
                           <Grid item>
-                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-                            <Typography style={{ fontFamily: "TT norms pro" }}>{createNewTimeCreated(item.time_created)}</Typography>
-                            <Grid>{getRatingImage(item.rating)}</Grid>
-                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                            <Grid container alignItems="baseline">
+                              <Typography variant="h6" sx={{ fontFamily: "TT norms pro" }}>
+                                {item.user.name}
+                              </Typography>
+                              <Typography variant="body2" sx={{ fontFamily: "Roboto", ml: 1 }}>
+                                {createNewTimeCreated(item.time_created)}
+                              </Typography>
+                            </Grid>
+                            <Grid sx={{ mb: 0.5, mt: 0.5 }}>{getRatingImage(item.rating)}</Grid>
+                            <Typography variant="body1" sx={{ fontFamily: "TT norms pro" }}>
+                              {item.text}
+                            </Typography>
                           </Grid>
-                          <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                          <Grid container direction="row" justifyContent="end" sx={{ pt: 2, pr: 1 }}>
                             <Button
                               onClick={() => window.open(item.url)}
                               size="small"
@@ -375,10 +383,18 @@ const Details = () => {
                           }}
                         >
                           <Grid item>
-                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
-                            <Grid>{getRatingImage(item.rating)}</Grid>
-                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                            <Grid container alignItems="baseline">
+                              <Typography variant="h6" sx={{ fontFamily: "TT norms pro" }}>
+                                {item.user.name}
+                              </Typography>
+                              <Typography variant="body2" sx={{ fontFamily: "Roboto", ml: 1 }}>
+                                {createNewTimeCreated(item.time_created)}
+                              </Typography>
+                            </Grid>
+                            <Grid sx={{ mb: 0.5, mt: 0.5 }}>{getRatingImage(item.rating)}</Grid>
+                            <Typography variant="body1" sx={{ fontFamily: "Roboto" }}>
+                              {item.text}
+                            </Typography>
                           </Grid>
                           <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
                             <Button

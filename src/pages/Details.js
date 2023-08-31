@@ -156,7 +156,7 @@ const Details = () => {
   return (
     <>
       {isLoading ? (
-        <Grid container justifyContent="center" sx={{ mt: "40vh" }}>
+        <Grid container justifyContent="center" sx={{ mt: "30vh" }}>
           <Oval height={80} width={80} color={"#81c784"} visible={true} ariaLabel="oval-loading" secondaryColor={"lightgrey"} strokeWidth={3} strokeWidthSecondary={3} />
         </Grid>
       ) : (

@@ -170,9 +170,9 @@ const Details = () => {
             }}
           >
             <div className="filters">
-              <Container style={{ paddingTop: "80px" }}>
-                <Grid container display="flex" direction="row" justifyContent="center" style={{ paddingBottom: "80px" }}>
-                  <Grid item display="flex" justifyContent="center" alignItems="start" direction="column" color={theme.palette.primary.contrastText}>
+              <Container sx={{ pt: "60px", pb: "60px" }}>
+                <Grid container justifyContent="center">
+                  <Grid item justifyContent="center" alignItems="start" direction="column" color={theme.palette.primary.contrastText}>
                     <Typography
                       variant="h4"
                       style={{
@@ -203,7 +203,6 @@ const Details = () => {
                       <Fab variant="extended" style={{ backgroundColor: theme.palette.success.light, color: theme.palette.primary.contrastText, marginRight: "10px" }} onClick={() => openMaps()}>
                         <NavigationRoundedIcon sx={{ mr: 1 }} />
                         <Typography style={{ marginTop: "2px", marginRight: "5px" }} variant="button">
-                          {" "}
                           directions
                         </Typography>
                       </Fab>
@@ -392,7 +391,7 @@ const Details = () => {
                 </Grid>
               )
             ) : isSmallScreen ? (
-              <Grid container direction="column-reverse" alignItems="center">
+              <Grid container direction="column" alignItems="center">
                 {details?.photos.map((item, index) => (
                   <Grid item key={index}>
                     <img

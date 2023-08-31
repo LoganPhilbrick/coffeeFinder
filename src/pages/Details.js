@@ -181,7 +181,7 @@ const Details = () => {
                         marginBottom: "15px",
                       }}
                     >
-                      {details?.name}
+                      {details ? details.name : ""}
                     </Typography>
                     <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
                       {newRating}
@@ -191,13 +191,12 @@ const Details = () => {
                           marginLeft: "10px",
                         }}
                         color={theme.palette.primary.contrastText}
-                      >{`${reviews?.total} reviews`}</Typography>
+                      >{`${reviews ? reviews.total : ""} reviews`}</Typography>
                     </Grid>
                     <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
-                      <Typography
-                        style={{ fontFamily: "TT norms pro" }}
-                        color={theme.palette.primary.contrastText}
-                      >{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                      <Typography style={{ fontFamily: "TT norms pro" }} color={theme.palette.primary.contrastText}>{`${details ? details.location.address1 : ""} ${
+                        details ? details.location.city : ""
+                      }, ${details ? details.location.state : ""}`}</Typography>
                     </Grid>
                     <Grid container display="flex" direction="row" justifyContent="start" alignItems="baseline">
                       <Fab variant="extended" style={{ backgroundColor: theme.palette.success.light, color: theme.palette.primary.contrastText, marginRight: "10px" }} onClick={() => openMaps()}>

@@ -8,6 +8,7 @@ import { Oval } from "react-loader-spinner";
 import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 import NavigationRoundedIcon from "@mui/icons-material/NavigationRounded";
+
 // import ShareIcon from "@mui/icons-material/Share";
 // import StarRoundedIcon from "@mui/icons-material/StarRounded";
 
@@ -24,6 +25,7 @@ const Details = () => {
   const context = useOutletContext();
   const setIsLoading = context[5];
   const isLoading = context[2];
+  const isSmallScreen = context[7];
 
   const handleDetails = () => {
     setIsLoading(true);
@@ -160,7 +162,6 @@ const Details = () => {
       ) : (
         <>
           <div
-            className="fade-in"
             style={{
               backgroundImage: `url(${details?.image_url})`,
               marginBottom: "48px",
@@ -214,9 +215,8 @@ const Details = () => {
           </div>
 
           <Container
-            className="fade-in"
-            style={{
-              marginBottom: "48px",
+            sx={{
+              mb: "48px",
             }}
           >
             {picsOrReviews ? (
@@ -300,19 +300,20 @@ const Details = () => {
             )}
           </Container>
 
-          <Container className="fade-in">
+          <Grid container>
             {picsOrReviews ? (
-              <Grid container>
+              <Grid container justifyContent="center">
                 {reviews?.reviews.map((item) => (
                   <Grid
                     item
                     key={item.id}
-                    xs={12}
+                    xs={10}
                     style={{
                       color: "white",
                       borderRadius: "15px",
                       padding: "15px",
                       marginBottom: "36px",
+
                       backgroundColor: theme.palette.success.light,
                     }}
                   >
@@ -345,6 +346,21 @@ const Details = () => {
                   </Grid>
                 ))}
               </Grid>
+            ) : isSmallScreen ? (
+              <Grid container direction="column-reverse" alignItems="center">
+                {details?.photos.map((item, index) => (
+                  <Grid item key={index}>
+                    <img
+                      alt={item}
+                      src={item}
+                      style={{
+                        maxWidth: "100%",
+                        marginBottom: "0px",
+                      }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
             ) : (
               <Grid container direction="column" alignItems="center">
                 {details?.photos.map((item, index) => (
@@ -363,7 +379,7 @@ const Details = () => {
                 ))}
               </Grid>
             )}
-          </Container>
+          </Grid>
         </>
       )}
     </>

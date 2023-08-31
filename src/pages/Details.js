@@ -53,13 +53,13 @@ const Details = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log(details);
-  }, [details]);
+  // useEffect(() => {
+  //   console.log(details);
+  // }, [details]);
 
-  useEffect(() => {
-    console.log(reviews);
-  }, [reviews]);
+  // useEffect(() => {
+  //   console.log(reviews);
+  // }, [reviews]);
 
   let newRating;
 
@@ -302,49 +302,95 @@ const Details = () => {
 
           <Grid container>
             {picsOrReviews ? (
-              <Grid container justifyContent="center">
-                {reviews?.reviews.map((item) => (
-                  <Grid
-                    item
-                    key={item.id}
-                    xs={11}
-                    style={{
-                      color: "white",
-                      borderRadius: "5px",
-                      padding: "15px",
-                      marginBottom: "36px",
-                      backgroundColor: theme.palette.success.light,
-                    }}
-                  >
-                    <Grid item>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
-                      <Grid>{getRatingImage(item.rating)}</Grid>
-                      <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+              isSmallScreen ? (
+                <Grid container justifyContent="center">
+                  {reviews?.reviews.map((item) => (
+                    <Grid
+                      item
+                      key={item.id}
+                      xs={11}
+                      style={{
+                        color: "white",
+                        borderRadius: "5px",
+                        padding: "15px",
+                        marginBottom: "36px",
+                        backgroundColor: theme.palette.success.light,
+                      }}
+                    >
+                      <Grid item>
+                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
+                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
+                        <Grid>{getRatingImage(item.rating)}</Grid>
+                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                      </Grid>
+                      <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                        <Button
+                          onClick={() => window.open(item.url)}
+                          size="small"
+                          sx={{
+                            ":hover": {
+                              bgcolor: theme.palette.success.main,
+                              color: theme.palette.primary.contrastText,
+                              boxShadow: "none",
+                            },
+                            bgcolor: "#81c784",
+                            color: "white",
+                            boxShadow: "none",
+                            pt: 0.8,
+                          }}
+                          variant="contained"
+                        >
+                          Go To Review
+                        </Button>
+                      </Grid>
                     </Grid>
-                    <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
-                      <Button
-                        href={item.url}
-                        size="small"
-                        sx={{
-                          ":hover": {
-                            bgcolor: theme.palette.success.main,
-                            color: theme.palette.primary.contrastText,
-                          },
-                          backgroundColor: "white",
-                          color: theme.palette.success.light,
-                          borderRadius: 10,
-                          boxShadow: "none",
-                          pt: 0.9,
-                        }}
-                        variant="contained"
-                      >
-                        See Full Review...
-                      </Button>
+                  ))}
+                </Grid>
+              ) : (
+                <Grid container justifyContent="center">
+                  {reviews?.reviews.map((item) => (
+                    <Grid
+                      item
+                      key={item.id}
+                      xs={8}
+                      style={{
+                        color: "white",
+                        borderRadius: "5px",
+                        padding: "15px",
+                        marginBottom: "36px",
+                        backgroundColor: theme.palette.success.light,
+                      }}
+                    >
+                      <Grid item>
+                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
+                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
+                        <Grid>{getRatingImage(item.rating)}</Grid>
+                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                      </Grid>
+                      <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                        <Button
+                          onClick={() => window.open(item.url)}
+                          size="small"
+                          sx={{
+                            ":hover": {
+                              bgcolor: theme.palette.success.main,
+                              color: theme.palette.primary.contrastText,
+                              boxShadow: "none",
+                            },
+                            bgcolor: "#81c784",
+                            color: "white",
+                            boxShadow: "none",
+                            pt: 0.8,
+                          }}
+                          variant="contained"
+                        >
+                          Go To Review
+                        </Button>
+                      </Grid>
                     </Grid>
-                  </Grid>
-                ))}
-              </Grid>
+                  ))}
+                </Grid>
+              )
             ) : isSmallScreen ? (
               <Grid container direction="column-reverse" alignItems="center">
                 {details?.photos.map((item, index) => (

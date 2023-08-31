@@ -307,13 +307,12 @@ const Details = () => {
                   <Grid
                     item
                     key={item.id}
-                    xs={10}
+                    xs={11}
                     style={{
                       color: "white",
-                      borderRadius: "15px",
+                      borderRadius: "5px",
                       padding: "15px",
                       marginBottom: "36px",
-
                       backgroundColor: theme.palette.success.light,
                     }}
                   >

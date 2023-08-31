@@ -95,6 +95,7 @@ const Details = () => {
       newRating = <img alt="rating" src={ZeroLg} />;
       break;
   }
+
   function getRatingImage(rating) {
     switch (rating) {
       case 5:
@@ -153,6 +154,15 @@ const Details = () => {
     window.open(mapsUrl);
   };
 
+  const createNewTimeCreated = (timeCreated) => {
+    const dateMinusTime = timeCreated.substring(0, 10);
+    const yr = dateMinusTime.substring(0, 4);
+    const day = dateMinusTime.substring(8, 10);
+    const month = dateMinusTime.substring(5, 7);
+    const newTimeCreated = `${month}/${day}/${yr}`;
+    return newTimeCreated;
+  };
+
   return (
     <>
       {isLoading ? (
@@ -161,268 +171,277 @@ const Details = () => {
         </Grid>
       ) : (
         <>
-          <div
-            style={{
-              backgroundImage: `url(${details?.image_url})`,
-              marginBottom: "48px",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="filters">
-              <Container sx={{ pt: "60px", pb: "60px" }}>
-                <Grid container justifyContent="center">
-                  <Grid item justifyContent="center" alignItems="start" direction="column" color={theme.palette.primary.contrastText}>
-                    <Typography
-                      variant="h4"
-                      style={{
-                        fontFamily: "TT norms pro",
-                        fontWeight: "500",
-                        marginBottom: "15px",
-                      }}
-                    >
-                      {details ? details.name : ""}
-                    </Typography>
-                    <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
-                      {newRating}
-                      <Typography
-                        style={{
-                          fontFamily: "TT norms pro",
-                          marginLeft: "10px",
-                        }}
-                        color={theme.palette.primary.contrastText}
-                      >{`${reviews ? reviews.total : ""} reviews`}</Typography>
-                    </Grid>
-                    <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
-                      <Typography style={{ fontFamily: "TT norms pro" }} color={theme.palette.primary.contrastText}>{`${details ? details.location.address1 : ""} ${
-                        details ? details.location.city : ""
-                      }, ${details ? details.location.state : ""}`}</Typography>
-                    </Grid>
-                    <Grid container display="flex" direction="row" justifyContent="start" alignItems="baseline">
-                      <Fab variant="extended" style={{ backgroundColor: theme.palette.success.light, color: theme.palette.primary.contrastText, marginRight: "10px" }} onClick={() => openMaps()}>
-                        <NavigationRoundedIcon sx={{ mr: 1 }} />
-                        <Typography style={{ marginTop: "2px", marginRight: "5px" }} variant="button">
-                          directions
+          {details ? (
+            <>
+              <div
+                className="fade-in"
+                style={{
+                  backgroundImage: `url(${details?.image_url})`,
+                  marginBottom: "48px",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="filters">
+                  <Container sx={{ pt: "60px", pb: "60px" }}>
+                    <Grid container justifyContent="center">
+                      <Grid item justifyContent="center" alignItems="start" direction="column" color={theme.palette.primary.contrastText}>
+                        <Typography
+                          variant="h4"
+                          style={{
+                            fontFamily: "TT norms pro",
+                            fontWeight: "500",
+                            marginBottom: "15px",
+                          }}
+                        >
+                          {details?.name}
                         </Typography>
-                      </Fab>
+                        <Grid display="flex" direction="row" alignItems="center" style={{ marginBottom: "10px" }}>
+                          {newRating}
+                          <Typography
+                            style={{
+                              fontFamily: "TT norms pro",
+                              marginLeft: "10px",
+                            }}
+                            color={theme.palette.primary.contrastText}
+                          >{`${reviews?.total} reviews`}</Typography>
+                        </Grid>
+                        <Grid display="flex" direction="row" style={{ marginBottom: "15px" }}>
+                          <Typography
+                            style={{ fontFamily: "TT norms pro" }}
+                            color={theme.palette.primary.contrastText}
+                          >{`${details?.location.address1} ${details?.location.city}, ${details?.location.state}`}</Typography>
+                        </Grid>
+                        <Grid container display="flex" direction="row" justifyContent="start" alignItems="baseline">
+                          <Fab variant="extended" style={{ backgroundColor: theme.palette.success.light, color: theme.palette.primary.contrastText, marginRight: "10px" }} onClick={() => openMaps()}>
+                            <NavigationRoundedIcon sx={{ mr: 1 }} />
+                            <Typography style={{ marginTop: "2px", marginRight: "5px" }} variant="button">
+                              directions
+                            </Typography>
+                          </Fab>
+                        </Grid>
+                      </Grid>
                     </Grid>
+                  </Container>
+                </div>
+              </div>
+
+              <Container
+                className="fade-in"
+                sx={{
+                  mb: "48px",
+                }}
+              >
+                {picsOrReviews ? (
+                  <Grid container display="flex" direction="row" justifyContent="center">
+                    <Button
+                      variant="contained"
+                      sx={{
+                        ":hover": {
+                          bgcolor: theme.palette.success.main,
+                          color: theme.palette.primary.contrastText,
+                        },
+                        borderRadius: "10px 0px 0px 10px",
+                        padding: "20px",
+                        paddingLeft: "30px",
+                        paddingRight: "30px",
+                        backgroundColor: theme.palette.success.light,
+                        color: theme.palette.primary.contrastText,
+                      }}
+                      onClick={() => setPicsOrReviews(true)}
+                    >
+                      Reviews
+                    </Button>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        ":hover": {
+                          bgcolor: theme.palette.success.main,
+                          color: theme.palette.primary.contrastText,
+                        },
+                        borderRadius: "0px 10px 10px 0px",
+                        padding: "20px",
+                        paddingLeft: "30px",
+                        paddingRight: "30px",
+                        color: theme.palette.success.main,
+                        backgroundColor: "white",
+                      }}
+                      onClick={() => setPicsOrReviews(false)}
+                    >
+                      Photos
+                    </Button>
                   </Grid>
-                </Grid>
+                ) : (
+                  <Grid container display="flex" direction="row" justifyContent="center">
+                    <Button
+                      variant="contained"
+                      sx={{
+                        ":hover": {
+                          bgcolor: theme.palette.success.main,
+                          color: theme.palette.primary.contrastText,
+                        },
+                        borderRadius: "10px 0px 0px 10px",
+                        padding: "20px",
+                        paddingLeft: "30px",
+                        paddingRight: "30px",
+                        color: theme.palette.success.main,
+                        backgroundColor: "white",
+                      }}
+                      onClick={() => setPicsOrReviews(true)}
+                    >
+                      Reviews
+                    </Button>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        ":hover": {
+                          bgcolor: theme.palette.success.main,
+                          color: theme.palette.primary.contrastText,
+                        },
+                        borderRadius: "0px 10px 10px 0px",
+                        padding: "20px",
+                        paddingLeft: "30px",
+                        paddingRight: "30px",
+                        backgroundColor: theme.palette.success.light,
+                        color: theme.palette.primary.contrastText,
+                      }}
+                      onClick={() => setPicsOrReviews(false)}
+                    >
+                      Photos
+                    </Button>
+                  </Grid>
+                )}
               </Container>
-            </div>
-          </div>
 
-          <Container
-            sx={{
-              mb: "48px",
-            }}
-          >
-            {picsOrReviews ? (
-              <Grid container display="flex" direction="row" justifyContent="center">
-                <Button
-                  variant="contained"
-                  sx={{
-                    ":hover": {
-                      bgcolor: theme.palette.success.main,
-                      color: theme.palette.primary.contrastText,
-                    },
-                    borderRadius: "10px 0px 0px 10px",
-                    padding: "20px",
-                    paddingLeft: "30px",
-                    paddingRight: "30px",
-                    backgroundColor: theme.palette.success.light,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                  onClick={() => setPicsOrReviews(true)}
-                >
-                  Reviews
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    ":hover": {
-                      bgcolor: theme.palette.success.main,
-                      color: theme.palette.primary.contrastText,
-                    },
-                    borderRadius: "0px 10px 10px 0px",
-                    padding: "20px",
-                    paddingLeft: "30px",
-                    paddingRight: "30px",
-                    color: theme.palette.success.main,
-                    backgroundColor: "white",
-                  }}
-                  onClick={() => setPicsOrReviews(false)}
-                >
-                  Photos
-                </Button>
-              </Grid>
-            ) : (
-              <Grid container display="flex" direction="row" justifyContent="center">
-                <Button
-                  variant="contained"
-                  sx={{
-                    ":hover": {
-                      bgcolor: theme.palette.success.main,
-                      color: theme.palette.primary.contrastText,
-                    },
-                    borderRadius: "10px 0px 0px 10px",
-                    padding: "20px",
-                    paddingLeft: "30px",
-                    paddingRight: "30px",
-                    color: theme.palette.success.main,
-                    backgroundColor: "white",
-                  }}
-                  onClick={() => setPicsOrReviews(true)}
-                >
-                  Reviews
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    ":hover": {
-                      bgcolor: theme.palette.success.main,
-                      color: theme.palette.primary.contrastText,
-                    },
-                    borderRadius: "0px 10px 10px 0px",
-                    padding: "20px",
-                    paddingLeft: "30px",
-                    paddingRight: "30px",
-                    backgroundColor: theme.palette.success.light,
-                    color: theme.palette.primary.contrastText,
-                  }}
-                  onClick={() => setPicsOrReviews(false)}
-                >
-                  Photos
-                </Button>
-              </Grid>
-            )}
-          </Container>
-
-          <Grid container>
-            {picsOrReviews ? (
-              isSmallScreen ? (
-                <Grid container justifyContent="center">
-                  {reviews?.reviews.map((item) => (
-                    <Grid
-                      item
-                      key={item.id}
-                      xs={11}
-                      style={{
-                        color: "white",
-                        borderRadius: "5px",
-                        padding: "15px",
-                        marginBottom: "36px",
-                        backgroundColor: theme.palette.success.light,
-                      }}
-                    >
-                      <Grid item>
-                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
-                        <Grid>{getRatingImage(item.rating)}</Grid>
-                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
-                      </Grid>
-                      <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
-                        <Button
-                          onClick={() => window.open(item.url)}
-                          size="small"
-                          sx={{
-                            ":hover": {
-                              bgcolor: theme.palette.success.main,
-                              color: theme.palette.primary.contrastText,
-                              boxShadow: "none",
-                            },
-                            bgcolor: "#81c784",
+              <Grid container className="fade-in">
+                {picsOrReviews ? (
+                  isSmallScreen ? (
+                    <Grid container justifyContent="center">
+                      {reviews?.reviews.map((item) => (
+                        <Grid
+                          item
+                          key={item.id}
+                          xs={11}
+                          style={{
                             color: "white",
-                            boxShadow: "none",
-                            pt: 0.8,
+                            borderRadius: "5px",
+                            padding: "15px",
+                            marginBottom: "36px",
+                            backgroundColor: theme.palette.success.light,
                           }}
-                          variant="contained"
                         >
-                          Go To Review
-                        </Button>
-                      </Grid>
+                          <Grid item>
+                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
+                            <Typography style={{ fontFamily: "TT norms pro" }}>{createNewTimeCreated(item.time_created)}</Typography>
+                            <Grid>{getRatingImage(item.rating)}</Grid>
+                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                          </Grid>
+                          <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                            <Button
+                              onClick={() => window.open(item.url)}
+                              size="small"
+                              sx={{
+                                ":hover": {
+                                  bgcolor: theme.palette.success.main,
+                                  color: theme.palette.primary.contrastText,
+                                  boxShadow: "none",
+                                },
+                                bgcolor: "#81c784",
+                                color: "white",
+                                boxShadow: "none",
+                                pt: 0.8,
+                              }}
+                              variant="contained"
+                            >
+                              Go To Review
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      ))}
                     </Grid>
-                  ))}
-                </Grid>
-              ) : (
-                <Grid container justifyContent="center">
-                  {reviews?.reviews.map((item) => (
-                    <Grid
-                      item
-                      key={item.id}
-                      xs={8}
-                      style={{
-                        color: "white",
-                        borderRadius: "5px",
-                        padding: "15px",
-                        marginBottom: "36px",
-                        backgroundColor: theme.palette.success.light,
-                      }}
-                    >
-                      <Grid item>
-                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
-                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
-                        <Grid>{getRatingImage(item.rating)}</Grid>
-                        <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
-                      </Grid>
-                      <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
-                        <Button
-                          onClick={() => window.open(item.url)}
-                          size="small"
-                          sx={{
-                            ":hover": {
-                              bgcolor: theme.palette.success.main,
-                              color: theme.palette.primary.contrastText,
-                              boxShadow: "none",
-                            },
-                            bgcolor: "#81c784",
+                  ) : (
+                    <Grid container justifyContent="center">
+                      {reviews?.reviews.map((item) => (
+                        <Grid
+                          item
+                          key={item.id}
+                          xs={8}
+                          style={{
                             color: "white",
-                            boxShadow: "none",
-                            pt: 0.8,
+                            borderRadius: "5px",
+                            padding: "15px",
+                            marginBottom: "36px",
+                            backgroundColor: theme.palette.success.light,
                           }}
-                          variant="contained"
                         >
-                          Go To Review
-                        </Button>
-                      </Grid>
+                          <Grid item>
+                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.user.name}</Typography>
+                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.time_created}</Typography>
+                            <Grid>{getRatingImage(item.rating)}</Grid>
+                            <Typography style={{ fontFamily: "TT norms pro" }}>{item.text}</Typography>
+                          </Grid>
+                          <Grid container direction="row" justifyContent="end" style={{ paddingTop: "15px", paddingRight: "10px" }}>
+                            <Button
+                              onClick={() => window.open(item.url)}
+                              size="small"
+                              sx={{
+                                ":hover": {
+                                  bgcolor: theme.palette.success.main,
+                                  color: theme.palette.primary.contrastText,
+                                  boxShadow: "none",
+                                },
+                                bgcolor: "#81c784",
+                                color: "white",
+                                boxShadow: "none",
+                                pt: 0.8,
+                              }}
+                              variant="contained"
+                            >
+                              Go To Review
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      ))}
                     </Grid>
-                  ))}
-                </Grid>
-              )
-            ) : isSmallScreen ? (
-              <Grid container direction="column" alignItems="center">
-                {details?.photos.map((item, index) => (
-                  <Grid item key={index}>
-                    <img
-                      alt={item}
-                      src={item}
-                      style={{
-                        maxWidth: "100%",
-                        marginBottom: "0px",
-                      }}
-                    />
+                  )
+                ) : isSmallScreen ? (
+                  <Grid container direction="column" alignItems="center">
+                    {details?.photos.map((item, index) => (
+                      <Grid item key={index}>
+                        <img
+                          alt={item}
+                          src={item}
+                          style={{
+                            maxWidth: "100%",
+                            marginBottom: "0px",
+                          }}
+                        />
+                      </Grid>
+                    ))}
                   </Grid>
-                ))}
-              </Grid>
-            ) : (
-              <Grid container direction="column" alignItems="center">
-                {details?.photos.map((item, index) => (
-                  <Grid item key={index}>
-                    <img
-                      alt={item}
-                      src={item}
-                      style={{
-                        maxHeight: "60vh",
-                        maxWidth: "80vw",
-                        borderRadius: "15px",
-                        marginBottom: "36px",
-                      }}
-                    />
+                ) : (
+                  <Grid container direction="column" alignItems="center">
+                    {details?.photos.map((item, index) => (
+                      <Grid item key={index}>
+                        <img
+                          alt={item}
+                          src={item}
+                          style={{
+                            maxHeight: "60vh",
+                            maxWidth: "80vw",
+                            borderRadius: "15px",
+                            marginBottom: "36px",
+                          }}
+                        />
+                      </Grid>
+                    ))}
                   </Grid>
-                ))}
+                )}
               </Grid>
-            )}
-          </Grid>
+            </>
+          ) : (
+            <></>
+          )}
         </>
       )}
     </>

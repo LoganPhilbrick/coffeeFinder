@@ -63,8 +63,8 @@ const Details = () => {
 
   let newRating;
 
-  switch (details?.rating) {
-    case 5:
+  switch (Math.floor(details?.rating) + 0.5) {
+    case 5 && 5.5:
       newRating = <img style={{ width: "150px" }} alt="rating" src={FiveLg} />;
       break;
     case 4.5:
@@ -97,8 +97,8 @@ const Details = () => {
   }
 
   function getRatingImage(rating) {
-    switch (rating) {
-      case 5:
+    switch (Math.floor(rating) + 0.5) {
+      case 5 && 5.5:
         return <img style={{ width: "100px" }} alt="rating" src={FiveLg} />;
 
       case 4.5:

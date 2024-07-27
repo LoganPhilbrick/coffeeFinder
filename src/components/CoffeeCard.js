@@ -16,8 +16,8 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
 
   let newRating;
 
-  switch (rating) {
-    case 5:
+  switch (Math.floor(rating) + 0.5) {
+    case 5 && 5.5:
       newRating = <img alt="rating" src={Five} />;
       break;
     case 4.5:

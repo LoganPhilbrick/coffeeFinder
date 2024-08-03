@@ -4,7 +4,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 
-export const APIKEY = "yCv9CY1cY47Mguq02W1yh2eZQItWCWdDS3TsX3jP0Ay0-KLogFQw_TnOTlAOyEZ0HT9bSB0W0SzjyGPywt7xXql4JJYHUCfVxP5EPnbAIu5sXDs8facC_V9blOBCZHYx";
+export const APIKEY = process.env.APIKEY;
 
 function App() {
   const [info, setInfo] = useState([]);
@@ -20,7 +20,13 @@ function App() {
       fetchCoffeeData(APIKEY, latitude, longitude)
         .then((data) => {
           console.log({ data });
-          setInfo(data.businesses);
+          let filteredValues = data.businesses.filter((business) => {
+            if (business.rating > 0.1) {
+              return true;
+            }
+            return false;
+          });
+          setInfo(filteredValues);
           setLoaded(true);
           setIsLoading(false); // set isLoading to false when the data has been loaded
         })

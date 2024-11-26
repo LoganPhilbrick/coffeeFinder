@@ -5,6 +5,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Details from "./pages/Details";
+import "@fontsource/roboto";
 
 const Router = createBrowserRouter([
   {

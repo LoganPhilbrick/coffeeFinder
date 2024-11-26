@@ -26,7 +26,7 @@ const HomePage = () => {
         <Container maxWidth="lg" sx={{ mt: "40px", display: "flex", justifyContent: "center" }}>
           <>
             {loaded ? (
-              <Grid container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
+              <Grid data-testid="card" container spacing={3} justifyContent="center" style={{ marginBottom: "40px" }}>
                 {info.map((item, index) => (
                   <Grid item xs="auto" className="fade-in" key={index} style={{ animationDelay: calculateDelay(index) }}>
                     <CoffeeCard

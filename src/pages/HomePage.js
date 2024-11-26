@@ -120,6 +120,7 @@ const HomePage = () => {
             ) : (
               <>
                 <Button
+                  data-testid="searchbutton"
                   variant="contained"
                   sx={{
                     ":hover": {

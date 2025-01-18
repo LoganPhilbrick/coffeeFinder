@@ -5,7 +5,6 @@ import MobileDetect from "mobile-detect";
 import { Container, Typography, Grid, Fab, Button, useTheme } from "@mui/material";
 import { useOutletContext, useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
-import "../fonts.css";
 import { ZeroLg, OneLg, OneHalfLg, TwoLg, TwoHalfLg, ThreeLg, ThreeHalfLg, FourLg, FourHalfLg, FiveLg } from "../assets/images";
 import NavigationRoundedIcon from "@mui/icons-material/NavigationRounded";
 
@@ -189,7 +188,6 @@ const Details = () => {
                         <Typography
                           variant="h4"
                           style={{
-                            fontFamily: "TT norms pro",
                             fontWeight: "500",
                             marginBottom: "15px",
                           }}
@@ -200,7 +198,6 @@ const Details = () => {
                           {newRating}
                           <Typography
                             style={{
-                              fontFamily: "Roboto",
                               marginLeft: "10px",
                             }}
                             color={theme.palette.primary.contrastText}
@@ -332,17 +329,13 @@ const Details = () => {
                         >
                           <Grid item>
                             <Grid container alignItems="baseline">
-                              <Typography variant="h6" sx={{ fontFamily: "TT norms pro" }}>
-                                {item.user.name}
-                              </Typography>
+                              <Typography variant="h6">{item.user.name}</Typography>
                               <Typography variant="body2" sx={{ fontFamily: "Roboto", ml: 1 }}>
                                 {createNewTimeCreated(item.time_created)}
                               </Typography>
                             </Grid>
                             <Grid sx={{ mb: 0.5, mt: 0.5 }}>{getRatingImage(item.rating)}</Grid>
-                            <Typography variant="body1" sx={{ fontFamily: "TT norms pro" }}>
-                              {item.text}
-                            </Typography>
+                            <Typography variant="body1">{item.text}</Typography>
                           </Grid>
                           <Grid container direction="row" justifyContent="end" sx={{ pt: 2, pr: 1 }}>
                             <Button
@@ -384,9 +377,7 @@ const Details = () => {
                         >
                           <Grid item>
                             <Grid container alignItems="baseline">
-                              <Typography variant="h6" sx={{ fontFamily: "TT norms pro" }}>
-                                {item.user.name}
-                              </Typography>
+                              <Typography variant="h6">{item.user.name}</Typography>
                               <Typography variant="body2" sx={{ fontFamily: "Roboto", ml: 1 }}>
                                 {createNewTimeCreated(item.time_created)}
                               </Typography>

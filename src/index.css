@@ -6,10 +6,6 @@ body {
   background-color: white;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
 .slide-top {
   animation: slide-top 0.5s ease-out forwards;
   transform: translateY(-100%);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Card, CardActionArea, CardMedia, Grid } from "@mui/material";
-import "../fonts.css";
 import { useNavigate } from "react-router-dom";
 import { Zero, One, OneHalf, Two, TwoHalf, Three, ThreeHalf, Four, FourHalf, Five, YelpLogo } from "../assets/images";
 
@@ -60,25 +59,25 @@ const CoffeeCard = ({ name, rating, distance, imageUrl, address, count, id }) =>
       <CardActionArea>
         <CardMedia component="img" height="170" image={imageUrl} style={{ borderRadius: "5px" }} />
         <Grid container justifyContent="flex-start" marginTop="15px">
-          <Typography className="norms" gutterBottom component="div" fontWeight="700" style={{ fontWeight: "700", fontFamily: "tt norms pro" }}>
+          <Typography gutterBottom component="div" fontWeight="700" style={{ fontWeight: "700" }}>
             {name}
           </Typography>
           <Grid container>
             <Grid container direction="row">
               <Grid item>{newRating}</Grid>
-              <Grid item style={{ marginLeft: "10px", fontFamily: "tt norms pro" }}>
+              <Grid item style={{ marginLeft: "10px" }}>
                 {count} Reviews
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center", fontFamily: "tt norms pro" }}>
+              <Typography variant="body1" color="text.secondary" style={{ display: "flex", alignItems: "center" }}>
                 {`${miles} mi`}
               </Typography>
             </Grid>
           </Grid>
           <Grid container direction="row" justifyContent="space-between">
             <Grid item xs={12}>
-              <Typography variant="body1" color="text.secondary" style={{ fontFamily: "tt norms pro" }}>
+              <Typography variant="body1" color="text.secondary" style={{}}>
                 {address}
               </Typography>
             </Grid>
